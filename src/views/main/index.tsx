@@ -1,24 +1,46 @@
 import * as React from 'react';
+import { Layout } from 'antd';
+import { observer, inject } from 'mobx-react';
+import './index.css'
+//头部组件
+import Header from '@/components/header';
+//导航栏组件
+import MenuAntd from '@/components/menu';
+//路由组件
+import RouterView from '@/router/RouterView';
 
-class LoginPage extends React.Component{
-    constructor(props: any){
+@inject('question')
+@observer
+class LoginPage extends React.Component {
+
+    constructor(props: any) {
         super(props);
-
-        // 1.类型
-        let list: number = 100;
-        let arr: Array<object> = [{}];
-        let arr2: [object] = [{}];
-
-        // 2.函数
-        function add(num1: number, num2: any){
-
-        }
+        const { getQuestion } = props.question;
+        getQuestion();
     }
 
+    state = {
+        current: '',
+    };
 
-    public render(){
-        return <p>主页面</p>
+    render() {
+        return (
+            <Layout className="mainHomePage">
+                <Header />
+                <Layout className="homePageBody">
+                    <MenuAntd />
+                    <Layout className="contentView">
+                        <RouterView routes={this.props['routes']} />
+                    </Layout>
+                </Layout>
+            </Layout>
+        )
     }
+    componentDidMount() {
+        // console.log(this.props, 'this.props')
+
+    }
+
 }
 
 export default LoginPage;

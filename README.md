@@ -1,5 +1,5 @@
 # 考试管理后台
-
+# 修改了
 ## 启动项目
 - 初始化
 ```js
@@ -9,6 +9,7 @@ create-react-app.cm exam-cms --scripts-version=react-scripts-ts
 - 启服务
 ```js
 npm run start
+
 ```
 
 ## 环境搭建
@@ -31,3 +32,6 @@ npm install --save-dev mobx mobx-react
 ```js
 npm install --save-dev antd
 ```
+
+-   引入别名配置
+    webpack 配置@ 别名映射目录
