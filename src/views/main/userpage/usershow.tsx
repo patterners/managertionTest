@@ -1,9 +1,5 @@
 import * as React from "react";
 import "./usershow.css"
-<<<<<<< HEAD
-class Usershow extends React.Component{
-    render(){
-=======
 import { Table } from 'antd';
 const columns = [
     {
@@ -41,7 +37,6 @@ const data = [
 ];
 class Usershow extends React.Component {
     render() {
->>>>>>> 61f9bf024de6be40a5adb19f0f35b85a3de6515c
         return (
             <div className="usershow">
                 <h2>用户展示</h2>
@@ -56,18 +51,13 @@ class Usershow extends React.Component {
                 <div className="change-content">
                     <div>
                         <h2>用户数据</h2>
-<<<<<<< HEAD
-                        
-=======
                         <div>
                             <Table columns={columns} dataSource={data} size="middle" />
                         </div>
->>>>>>> 61f9bf024de6be40a5adb19f0f35b85a3de6515c
                     </div>
                 </div>
             </div>
         )
     }
 }
-
 export default Usershow

@@ -8,3 +8,4 @@ export let getQuestion = (params: object)=>{
 export let getQuestionsType = ()=>{
     return request.get('/exam/getQuestionsType');
 }
+//获取待批班级数据

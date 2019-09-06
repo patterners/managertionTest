@@ -15,6 +15,8 @@ import AddTest from "@/views/main/testpage/addtest"
 import StudentAdministration from "@/views/main/Administration/StudentAdministration"
 import ClassAdministration from "@/views/main/Administration/classAdministration"
 import Classroom from "@/views/main/Administration/Classroom"
+//阅卷管理
+import Pending from "@/views/main/Marking/Pending"
 
 
 export default {
@@ -56,6 +58,10 @@ export default {
             {
                 path: '/main/Classroom',
                 component: Classroom
+            },
+            {
+                path: '/main/pending',
+                component: Pending
             }
         ]
     }, {
