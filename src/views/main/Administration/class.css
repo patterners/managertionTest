@@ -1,4 +1,4 @@
-h2{
+/* h2{
     width: 100%;
     height: 80px;
     line-height: 80px;
@@ -41,8 +41,12 @@ li span{
     border-radius: 10px;
     background:#fff;
 }
-
+and-but.Button{
+    height: 50px;
+    width: 150px;
+    margin-right: 70%;
+}
 .and-but{
     float: left;
     margin: 20px 0;
-}
+} */
