@@ -48,8 +48,8 @@ class MenuAntd extends React.Component {
                                 <span>用户管理</span>
                             </span>
                         }>
-                        <Menu.Item key="5">添加用户</Menu.Item>
-                        <Menu.Item key="6">用户展示</Menu.Item>
+                        {/* <Menu.Item key="5">添加用户</Menu.Item>
+                        <Menu.Item key="6">用户展示</Menu.Item> */}
 
                         <Menu.Item key="5">
                             <Link to="/main/adduser">添加用户</Link>
