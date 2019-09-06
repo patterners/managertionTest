@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Editor from 'for-editor'
-import './index.css'
+import './index.scss'
 export class index extends React.Component {
     state = {
         value: '请输入内容...',
