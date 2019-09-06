@@ -1,0 +1,51 @@
+.class-list .list,.div {
+  width: 97%;
+  height: 55px;
+  background: #eee;
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.div{
+    background: #fff !important; 
+}
+.class-list .list span {
+  display: block;
+  padding-left: 10px;
+  line-height: 55px;
+}
+.class-list .list :nth-child(1) {
+  width: 20%;
+  height: 100%;
+}
+.class-list .list :nth-child(2) {
+  width: 40%;
+  height: 100%;
+}
+.class-list .list :nth-child(3) {
+  width: 20%;
+  height: 100%;
+}
+.class-list .list :nth-child(4) {
+  width: 20%;
+  height: 100%;
+}
+.div div {
+  padding-left: 10px;
+  line-height: 55px;
+}
+.div :nth-child(1) {
+  width: 20%;
+  height: 100%;
+}
+.div :nth-child(2) {
+  width: 40%;
+  height: 100%;
+}
+.div :nth-child(3) {
+  width: 20%;
+  height: 100%;
+}
+.div :nth-child(4) {
+  width: 20%;
+  height: 100%;
+}

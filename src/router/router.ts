@@ -5,10 +5,15 @@ import Main from '@/views/main';
 import Question from '@/views/main/quertion'
 import AddQuestion from '@/views/main/quertion/addQuestion'
 import ClassifyQuestion from '@/views/main/quertion/classifyQuestion'
-
+//用户管理
 import AddUser from '@/views/main/userpage/adduser'
 import UserShow from '@/views/main/userpage/usershow'
-
+//考试管理
+import AddTest from "@/views/main/testpage/addtest"
+//班级管理
+import StudentAdministration from "@/views/main/Administration/StudentAdministration"
+import ClassAdministration from "@/views/main/Administration/classAdministration"
+import Classroom from "@/views/main/Administration/Classroom"
 
 export default {
     routes: [{
@@ -25,12 +30,30 @@ export default {
                 path: '/main/classifyQuestion',
                 component: ClassifyQuestion
             },
+
             {
                 path: '/main/adduser',
                 component: AddUser
-            }, {
+            }, 
+            {
                 path: '/main/usershow',
                 component: UserShow
+            },
+            {
+                path: '/main/addtest',
+                component: AddTest
+            },
+            {
+                path: '/main/StudentAdministration',
+                component: StudentAdministration
+            }, 
+            {
+                path: '/main/ClassAdministration',
+                component: ClassAdministration
+            },
+            {
+                path: '/main/Classroom',
+                component: Classroom
             }
         ]
     }, {

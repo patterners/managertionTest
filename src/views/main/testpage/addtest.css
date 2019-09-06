@@ -1,0 +1,24 @@
+h2 {
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 5px;
+  }
+  .addtest{
+      background: #fff;
+      width: 95%;
+      height: auto;
+      border-radius: 5px;
+      margin-left: 50%;
+      transform: translate(-50%);
+      padding-top: 20px;
+  }
+.time{
+    height: 100px;
+    width: 100%;
+    padding: 0 24px;
+}
+.time h3 b{
+    color:red;
+    padding: 10px;
+}

@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { inject, observer } from 'mobx-react'
+
 import { WrappedFormUtils } from 'antd/lib/form/Form'
+
 import Header from "@/components/question/questionHeader";
 import Item from '@/components/question/questionItem'
 
@@ -8,7 +10,6 @@ interface Props {
     form: WrappedFormUtils,
     question: any,
     history: History,
-
 }
 
 @inject('question')

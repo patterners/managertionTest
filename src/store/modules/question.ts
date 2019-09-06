@@ -1,13 +1,10 @@
 import { observable, action } from 'mobx'
-import { getQuestion ,getQuestionsType} from '@/service/index'
-
+import { getQuestion, getQuestionsType } from '@/service/index'
 class Question {
-    // @observable account: any = account;
-
-
     // 按条件获取试题
     @action async getQuestion(params: any): Promise<any> {
         let result: any = await getQuestion(params);
+        console.log('question...', result);
         return result
     }
     // 按条件获取试题类型
