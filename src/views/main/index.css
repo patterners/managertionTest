@@ -1,0 +1,13 @@
+/* header */
+.log {
+  background: #001529;
+}
+.log img {
+  width: 250px;
+}
+
+.contentView {
+  padding-left: 250px;
+  height: 80vh;
+  overflow: auto;
+}
