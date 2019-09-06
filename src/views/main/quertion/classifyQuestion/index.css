@@ -1,0 +1,52 @@
+h2{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 5px;
+}
+.list li{
+    list-style: none;
+    line-height: 55px;
+    border-bottom: 1px solid #ccc;
+}
+li span{
+    margin-left: 10px;
+    margin-right: 360px;
+}
+.li{
+    list-style: none;
+    line-height: 55px;
+    border-bottom: 1px solid #ccc;
+}
+.li .span1{
+    width: 150px;
+    height: 55px;
+    display:inline-block;
+    margin-right: 275px;
+}
+.inp{
+    width: 80%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    height: 44px;
+    border:1px solid #ccc;
+}
+.list{
+    clear: both;
+}
+.antd-dabox{
+    width: 95%;
+    height: 85%;
+    padding: 0 20px;
+    border-radius: 10px;
+    background:#fff;
+}
+Button{
+    height: 50px;
+    width: 150px;
+    margin-right: 70%;
+}
+.and-but{
+    float: left;
+    margin: 20px 0;
+}

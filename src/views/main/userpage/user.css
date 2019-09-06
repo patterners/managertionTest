@@ -1,0 +1,89 @@
+h2 {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  padding-left: 5px;
+}
+.add-box {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  overflow: scroll;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+}
+.add-list {
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 33.33%;
+  height: 300px;
+  border-radius: 5px;
+}
+.tab {
+  width: 200px;
+  height: 38px;
+  background: #fff;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+.tab span {
+  display: inline-block;
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  padding: 10px 0;
+}
+.tab .active {
+  border: 1px solid blue;
+  color: blue;
+}
+.userinp {
+  width: 95%;
+  height: 38px;
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+}
+.userinp input {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+}
+select {
+  width: 150px;
+  height: 35px;
+  border: 1px solid #ccc;
+}
+.buts {
+  width: 95%;
+  height: 38px;
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.buts .confirm{
+  width: 130px;
+  height: 35px;
+  background: blue;
+  color:#fff;
+  border:0;
+  border-radius: 5px;
+}
+.buts .reset{
+  width: 90px;
+  height: 35px;
+  background: #fff;
+  color:#333;
+  border:0;
+  border-radius: 5px;
+  margin-left: 20px;
+  border:1px solid #ccc;
+}

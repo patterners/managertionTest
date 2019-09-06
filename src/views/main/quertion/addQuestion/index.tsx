@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import Editor from 'for-editor'
 import './index.css'
 export class index extends React.Component {

@@ -5,7 +5,8 @@ import Main from '@/views/main';
 import Question from '@/views/main/quertion'
 import AddQuestion from '@/views/main/quertion/addQuestion'
 import ClassifyQuestion from '@/views/main/quertion/classifyQuestion'
-
+import AddUser from '@/views/main/userpage/adduser'
+import UserShow from '@/views/main/userpage/usershow'
 
 export default {
     routes: [{
@@ -22,6 +23,14 @@ export default {
                 path: '/main/classifyQuestion',
                 component: ClassifyQuestion
             },
+
+            {
+                path: '/main/adduser',
+                component: AddUser
+            }, {
+                path: '/main/usershow',
+                component: UserShow
+            }
         ]
     }, {
         path: '/login',
