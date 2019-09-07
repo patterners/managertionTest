@@ -51,7 +51,6 @@ class LoginPage extends React.Component<Props>{
                 rules: [
                   {
                     validator: (ruler, value, callback) => {
-                      console.log('value...', value);
                       if (/[a-z]{5,20}/.test(value)) {
                         callback();
                       } else {
@@ -74,7 +73,6 @@ class LoginPage extends React.Component<Props>{
                 rules: [
                   {
                     validator: (ruler, value, callback) => {
-                      console.log('value...', value);
                       if (/^(?![a-z]+$)(?![A-Z]+$)(?!([^(a-zA-Z\!\*\.\#)])+$)^.{8,16}$/.test(value)) {
                         callback();
                       } else {

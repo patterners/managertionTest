@@ -57,15 +57,12 @@ export class index extends React.Component<Props>{
     )
   }
   async componentDidMount() {
-
     const { data } = await this.props.question.getQuestionsType()
-
     this.setState({
       list: data
-    }, () => {
-      console.log(this.state.list)
     })
   }
+
 }
 
 export default index
