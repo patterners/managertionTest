@@ -18,7 +18,8 @@ import ClassAdministration from "@/views/main/Administration/classAdministration
 import Classroom from "@/views/main/Administration/Classroom"
 //阅卷管理
 import Pending from "@/views/main/Marking/Pending"
-
+//批卷详情
+import Detailpijuan from "@/views/main/testpage/detailPijuan/detailPijuan"
 
 export default {
   routes: [{
@@ -66,6 +67,12 @@ export default {
       }, {
         path: '/main/pending',
         component: Pending
+
+      },
+      {
+        path: '/main/detailpijuan',
+        component: Detailpijuan
+
       }
     ]
   }, {
