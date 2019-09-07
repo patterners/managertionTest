@@ -67,10 +67,12 @@ export default {
       }, {
         path: '/main/pending',
         component: Pending
+
       },
       {
         path: '/main/detailpijuan',
         component: Detailpijuan
+
       }
     ]
   }, {

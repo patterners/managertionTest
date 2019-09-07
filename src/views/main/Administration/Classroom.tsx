@@ -3,7 +3,13 @@ import * as React from "react";
 import "./class.css"
 import { Modal, Button } from 'antd';
 import Listclassroom from "@/components/Administration/Listclassroom"
-class Classroom extends React.Component {
+import { inject, observer } from 'mobx-react'
+interface Props {
+    question: any,
+}
+@inject('question')
+@observer
+class Classroom extends React.Component<Props> {
     state = { visible: false, list: [] };
 
     showModal = () => {
@@ -43,11 +49,21 @@ class Classroom extends React.Component {
                         </Modal>
                     </div>
                     <div className="list">
-                        <Listclassroom/>
+                        <Listclassroom list={this.state["classList"]} />
                     </div>
                 </div>
             </div>
         )
     }
+
+    async componentDidMount() {
+        const { data } = await this.props.question.getclassroom()
+        this.setState({
+            classList: data
+        }, () => {
+            console.log(this.state["classList"])
+        })
+    }
+
 }
 export default Classroom

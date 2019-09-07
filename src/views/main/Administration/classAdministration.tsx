@@ -64,5 +64,6 @@ class ClassAdministration extends React.Component<Props> {
             console.log(this.state["classList"])
         })
     }
+    
 }
 export default ClassAdministration
