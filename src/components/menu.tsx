@@ -47,7 +47,7 @@ class MenuAntd extends React.Component {
                                 <Icon type="appstore" />
                                 <span>用户管理</span>
                             </span>
-                        }>}
+                        }>
                         <Menu.Item key="5">
                             <Link to="/main/adduser">添加用户</Link>
                         </Menu.Item>
@@ -68,7 +68,9 @@ class MenuAntd extends React.Component {
                         <Menu.Item key="9">
                             <Link to="/main/addtest">添加考试</Link>
                         </Menu.Item>
-                        <Menu.Item key="10">考试列表</Menu.Item>
+                        <Menu.Item key="10">
+                            <Link to="/main/testList">  考试列表</Link>
+                        </Menu.Item>
                     </SubMenu>
                     {/* 班级管理 */}
                     <SubMenu

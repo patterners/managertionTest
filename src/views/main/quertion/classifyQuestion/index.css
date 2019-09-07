@@ -11,7 +11,7 @@ h2{
 }
 li span{
     margin-left: 10px;
-    margin-right: 360px;
+    /* margin-right: 360px; */
 }
 .li{
     list-style: none;

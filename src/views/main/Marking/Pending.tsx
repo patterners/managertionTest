@@ -1,6 +1,8 @@
 import * as React from "react";
 import "./Pending.css"
 import { Table } from 'antd';
+import { inject, observer } from 'mobx-react'
+
 const columns = [
     {
         title: '班级名',
@@ -52,18 +54,50 @@ const data = [
         operation: "批卷"
     },
 ];
-class ClassAdministration extends React.Component {
+interface Props {
+    question: any,
+    history:any
+}
+@inject('question')
+@observer
+class ClassAdministration extends React.Component<Props> {
+    state = {
+        data
+    }
     render() {
         return (
             <div>
                 <h2>待批班级</h2>
                 <div className="pending">
                     <div>
-                        <Table columns={columns} dataSource={data} size="middle" />
+                        <Table onRow={record => {
+                            return {
+                                onClick: (event) => {
+                                    console.log(event)
+                                    // this.props.history.push("/main/detailpijuan")
+                                 }, // 点击行
+                            };
+                        }} columns={columns} dataSource={this.state.data} size="middle" />
                     </div>
                 </div>
             </div>
         )
+    }
+    async componentDidMount() {
+        const { data } = await this.props.question.getclass()
+        const newdata = data.map((item: any, index: number) => {
+            return {
+                key: index,
+                name: item.grade_name,
+                age: item.subject_text,
+                address: item.subject_text,
+                rate: item.room_text,
+                operation: "批卷"
+            }
+        })
+        this.setState({
+            data: newdata
+        })
     }
 }
 export default ClassAdministration
