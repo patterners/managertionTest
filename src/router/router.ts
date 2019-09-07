@@ -11,6 +11,7 @@ import AddUser from '@/views/main/userpage/adduser'
 import UserShow from '@/views/main/userpage/usershow'
 //考试管理
 import AddTest from "@/views/main/testpage/addtest"
+import TestList from "@/views/main/testpage/testList"
 //班级管理
 import StudentAdministration from "@/views/main/Administration/StudentAdministration"
 import ClassAdministration from "@/views/main/Administration/classAdministration"
@@ -36,7 +37,7 @@ export default {
             {
                 path: '/main/adduser',
                 component: AddUser
-            }, 
+            },
             {
                 path: '/main/usershow',
                 component: UserShow
@@ -48,7 +49,7 @@ export default {
             {
                 path: '/main/StudentAdministration',
                 component: StudentAdministration
-            }, 
+            },
             {
                 path: '/main/ClassAdministration',
                 component: ClassAdministration
@@ -56,6 +57,10 @@ export default {
             {
                 path: '/main/Classroom',
                 component: Classroom
+            },
+            {
+                path: '/main/testList',
+                component: TestList
             }
         ]
     }, {
