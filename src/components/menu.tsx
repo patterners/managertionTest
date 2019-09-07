@@ -47,7 +47,7 @@ class MenuAntd extends React.Component {
                                 <Icon type="appstore" />
                                 <span>用户管理</span>
                             </span>
-                        }>}
+                        }>
                         <Menu.Item key="5">
                             <Link to="/main/adduser">添加用户</Link>
                         </Menu.Item>
