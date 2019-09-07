@@ -2,9 +2,12 @@
 import Login from '@/views/login';
 import Main from '@/views/main';
 // 二级路由
-import Question from '@/views/main/quertion'
+// 试题管理
+import Question from '@/views/main/quertion/checkQuestion'
 import AddQuestion from '@/views/main/quertion/addQuestion'
 import ClassifyQuestion from '@/views/main/quertion/classifyQuestion'
+// 试题详情页 
+import QuestionDetail from '@/views/main/quertion/checkQuestion/testItemDetails'
 
 //用户管理
 import AddUser from '@/views/main/userpage/adduser'
@@ -28,7 +31,12 @@ export default {
       {
         path: '/main/checkQuestion',
         component: Question
-      }, {
+      },
+      {
+        path: '/main/question/detail',
+        component: QuestionDetail
+      },
+      {
         path: '/main/addQuestion',
         component: AddQuestion
       }, {

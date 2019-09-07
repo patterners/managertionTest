@@ -3,12 +3,14 @@ import './index.css'
 interface Props {
   item: any
 }
-class questionItem extends React.Component<Props> {
+class questionItem extends React.Component<any> {
   render() {
+
     const { item } = this.props
-    // console.log(item)
     return (
-      <div className='question_item_div'>
+      <div className='question_item_div'
+        onClick={() => this.checkTestItem(item.questions_id)}
+      >
         <li ><b>{item.title}</b></li>
         <li>
           <span id="minspan" className="first">{item.questions_type_text}</span>
@@ -21,6 +23,14 @@ class questionItem extends React.Component<Props> {
       </div>
     )
   }
+
+  checkTestItem = (questions_id: string) => {
+    this.props.history.push({
+      pathname: "/main/question/detail",
+      state: { questions_id }
+    });
+  }
+
 }
 
 export default questionItem

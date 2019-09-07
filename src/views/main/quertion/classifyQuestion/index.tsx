@@ -1,8 +1,8 @@
-import * as React from 'react'
-import "./index.css"
-import List from '@/components/question/questionList';
+import "./index.css";
+import * as React from 'react';
 import { Modal, Button } from 'antd';
-import { inject, observer } from 'mobx-react'
+import { inject, observer } from 'mobx-react';
+import List from '@/components/question/questionList';
 
 interface Props {
   question: any,
@@ -11,7 +11,11 @@ interface Props {
 @inject('question')
 @observer
 export class index extends React.Component<Props>{
-  state = { visible: false, list: [] };
+  state = {
+    visible: false,
+    list: [],
+
+  };
 
   showModal = () => {
     this.setState({
@@ -46,11 +50,10 @@ export class index extends React.Component<Props>{
               <p>
                 <input className="inp" type="text" placeholder="请输入类型名称" />
               </p>
-
             </Modal>
           </div>
           <div className="list">
-            <List list={this.state["list"]} />
+            <List list={this.state["list"]}  {...this.props} />
           </div>
         </div>
       </div>
