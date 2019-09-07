@@ -2,7 +2,15 @@ import * as React from "react";
 import "./class.css"
 import { Modal, Button } from 'antd';
 import Listclass from "@/components/Administration/list"
-class ClassAdministration extends React.Component {
+import { inject, observer } from 'mobx-react'
+
+
+interface Props {
+    question: any,
+}
+@inject('question')
+@observer
+class ClassAdministration extends React.Component<Props> {
     state = { visible: false, list: [] };
 
     showModal = () => {
@@ -42,11 +50,19 @@ class ClassAdministration extends React.Component {
                         </Modal>
                     </div>
                     <div className="list">
-                        <Listclass/>
+                        <Listclass list={this.state["classList"]} />
                     </div>
                 </div>
             </div>
         )
+    }
+    async componentDidMount() {
+        const { data } = await this.props.question.getclass()
+        this.setState({
+            classList:data
+        },()=>{
+            console.log(this.state["classList"])
+        })
     }
 }
 export default ClassAdministration

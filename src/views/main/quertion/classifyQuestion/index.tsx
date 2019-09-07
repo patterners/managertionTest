@@ -64,8 +64,6 @@ export class index extends React.Component<Props>{
 
         this.setState({
             list: data
-        }, () => {
-            console.log(this.state.list)
         })
     }
 }
