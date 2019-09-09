@@ -1,9 +1,12 @@
 import * as React from 'react';
 import "./classlist.css"
+// import { inject, observer } from "mobx-react"    
 interface PorpsInfo {
-    list: object[]
+    list: any,
+    // question?: any
 }
-
+// @inject("question")
+// @observer
 class Listclass extends React.Component<PorpsInfo> {
     render() {
         const { list } = this.props
@@ -21,13 +24,21 @@ class Listclass extends React.Component<PorpsInfo> {
                         <div>{item.subject_text}</div>
                         <div>{item.room_text}</div>
                         <div>
-                            <b>编辑</b>|<b>删除</b>
+                            <b onClick={this.edit.bind(this)}>编辑</b>|<b onClick={this.del.bind(this, item.room_id)}>删除</b>
                         </div>
                     </div>
                 })}
 
             </div>
         )
+    }
+    //删除
+    del(id: any) {
+    //    await this.props.question.deleteclass(id)
+    }
+    //编辑
+    edit() {
+
     }
 }
 export default Listclass

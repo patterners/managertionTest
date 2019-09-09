@@ -1,0 +1,28 @@
+.student>h2{
+    padding: 20px;
+    font-size: 25px;
+}
+.student{
+    width: 100%;
+    height: 100px;
+}
+.student-seach{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    padding: 0 20px;
+    align-items: center;
+}
+.student-seach input,.student-seach select{
+    width: 230px;
+    height: 44px;
+    background: #fff;
+    margin-right: 44px;
+    border:0;
+    display: block;
+}
+.student-seach #but1,.student-seach #but2{
+    background: rgb(69, 69, 202);
+    color:#fff;
+    border-radius: 5px;
+}

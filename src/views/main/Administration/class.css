@@ -41,10 +41,10 @@ li span{
     border-radius: 10px;
     background:#fff;
 }
-and-but.Button{
-    height: 50px;
-    width: 150px;
-    margin-right: 70%;
+
+.ant-btn{
+    height: 50px !important;
+    width: 120px !important;
 }
 .and-but{
     float: left;

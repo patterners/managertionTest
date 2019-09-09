@@ -60,8 +60,6 @@ class ClassAdministration extends React.Component<Props> {
         const { data } = await this.props.question.getclass()
         this.setState({
             classList:data
-        },()=>{
-            console.log(this.state["classList"])
         })
     }
     

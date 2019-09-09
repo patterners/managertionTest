@@ -10,7 +10,11 @@ interface Props {
 @inject('question')
 @observer
 class Classroom extends React.Component<Props> {
-    state = { visible: false, list: [] };
+    constructor(props: any) {
+        super(props)
+        this.getclassroom = this.getclassroom.bind(this);
+    }
+    state = { visible: false, list: [], value: '' };
 
     showModal = () => {
         this.setState({
@@ -18,7 +22,9 @@ class Classroom extends React.Component<Props> {
         });
     };
 
-    handleOk = (e: any) => {
+    async handleOk() {
+        await this.props.question.addclassroom(this.state.value)
+        this.getclassroom()
         this.setState({
             visible: false,
         });
@@ -28,6 +34,7 @@ class Classroom extends React.Component<Props> {
         this.setState({
             visible: false,
         });
+
     };
     render() {
         return (
@@ -39,31 +46,36 @@ class Classroom extends React.Component<Props> {
                         <Modal
                             title="添加教室"
                             visible={this.state.visible}
-                            onOk={this.handleOk}
+                            onOk={this.handleOk.bind(this)}
                             onCancel={this.handleCancel}
                         >
                             <p>
-                                <input className="inp" type="text" placeholder="请输入类型名称" />
+                                <input className="inp" type="text" value={this.state.value} placeholder="请输入类型名称" onChange={(e) => {
+                                    this.setState({
+                                        value: e.target.value
+                                    })
+                                }} />
                             </p>
 
                         </Modal>
                     </div>
                     <div className="list">
-                        <Listclassroom list={this.state["classList"]} />
+                        <Listclassroom father={this} list={this.state["classList"]} />
                     </div>
                 </div>
             </div>
         )
     }
 
-    async componentDidMount() {
+    componentDidMount() {
+        this.getclassroom()
+
+    }
+    async getclassroom() {
         const { data } = await this.props.question.getclassroom()
         this.setState({
             classList: data
-        }, () => {
-            console.log(this.state["classList"])
         })
     }
-
 }
 export default Classroom
