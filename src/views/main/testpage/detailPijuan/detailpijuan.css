@@ -1,0 +1,54 @@
+.detailpijuan .main-top{
+    width: 98%;
+    height: 200px;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.detailpijuan .main-top>div>select{
+    width: 300px;
+    height: 50px;
+}
+.detailpijuan .main-top>div>span{
+    margin-right: 20px;
+    font-size: 30px;
+    margin-left:100px;
+}
+.detailpijuan .main-list{
+    width: 98%;
+    height: auto;
+    border-radius: 6px;
+    background: #fff;
+    margin-top: 50px;
+}
+.detailpijuan .main-top .seek #seek{
+    margin-left:150px;
+    width: 200px;
+    height: 50px;
+    color:#fff;
+}
+.main-list h3{
+    padding: 20px;
+    font-size: 30px;
+}
+
+.main-list table{
+    width: 95%;
+    margin-left: 50%;
+    transform: translate(-50%)
+}
+.main-list table tr{
+    height: 55px;
+    line-height: 55px;
+    background: #eee;
+    border-bottom: 1px solid #ccc;
+}
+.main-list table tr td{
+    padding-left: 10px;
+}
+.main-list table .tr_bg{
+    background:#fff;
+}

@@ -6,7 +6,6 @@ interface PropsInfo {
 }
 
 export default (props: PropsInfo) => {
-    console.log(props)
     return <Switch>
         {
             props.routes.map((item: any, index) => {

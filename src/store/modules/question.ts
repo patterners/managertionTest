@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { getQuestion, getQuestionsType,getclass } from '@/service/index'
+import { getQuestion, getQuestionsType,getclass,getclassroom,deleteclass,getstudent,addclassroom,deleteStudent } from '@/service/index'
 class Question {
     // 按条件获取试题
     @action async getQuestion(params: any): Promise<any> {
@@ -14,7 +14,31 @@ class Question {
     // 获取班级管理的数据
     @action async getclass(): Promise<any> {
         let result: any = await getclass();
-        console.log("班级管理.........",result)
+        return result
+    }
+
+    @action async getclassroom(): Promise<any> {
+        let result: any = await getclassroom();
+        return result
+    }
+    //删除班级接口
+    @action async deleteclass(grade_id:any): Promise<any> {
+        let result: any = await deleteclass(grade_id);
+        return result
+    }
+    //获取所有没有分班的学生
+    @action async getstudent(): Promise<any> {
+        let result: any = await getstudent();
+        return result
+    }
+    //添加教室
+    @action async addclassroom(text:string): Promise<any> {
+        let result: any = await addclassroom(text);
+        return result
+    }
+    //删除学生的接口
+    @action async deleteStudent(id:string): Promise<any> {
+        let result: any = await deleteStudent(id);
         return result
     }
 }

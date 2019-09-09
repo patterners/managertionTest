@@ -72,7 +72,7 @@ export class index extends React.Component {
                         </div>
                     </div>
                 </div>
-                <button>提交</button>
+                <button className="addQuestion-submit">提交</button>
             </div>
         )
     }
