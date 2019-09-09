@@ -28,8 +28,12 @@
     "mobx": "^5.13.0",
     "mobx-react": "^6.1.3",
     "node-sass": "^4.12.0",
+    "react-markdown": "^4.2.2",
     "react-router-dom": "^5.0.1",
+<<<<<<< HEAD
     "reqwest": "^2.0.5",
+=======
+>>>>>>> d61a56fa519df8c11625adb4b4a67930d0d211f5
     "sass": "^1.22.10",
     "sass-loader": "^8.0.0",
     "typescript": "^3.6.2"

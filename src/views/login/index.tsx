@@ -5,6 +5,7 @@ import { inject, observer } from 'mobx-react'
 import { History } from 'history/index'
 import './index.css'
 
+
 interface Props {
   form: WrappedFormUtils,
   user: any,
@@ -33,6 +34,9 @@ class LoginPage extends React.Component<Props>{
       }
     });
   };
+  componentDidMount() {
+    // console.log(this.props.user,555)
+  }
 
   render() {
     // console.log('props...', this.props, this.props.user.login);
