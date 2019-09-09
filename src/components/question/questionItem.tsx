@@ -9,7 +9,7 @@ class questionItem extends React.Component<any> {
     const { item } = this.props
     return (
       <div className='question_item_div'
-        onClick={() => this.checkTestItem(item.questions_id)}
+        onClick={(e: any) => this.checkTestItem(e, item.questions_id)}
       >
         <li ><b>{item.title}</b></li>
         <li>
@@ -17,20 +17,28 @@ class questionItem extends React.Component<any> {
           <span id="minspan" className="second">{item.subject_text}</span>
           <span id="minspan" className="third">{item.exam_name}</span>
           <b></b>
-          <a href="">编辑</a>
+          <a href="" onClick={(e: any) => this.changeQuestion(e, item.questions_id)}>编辑</a>
         </li>
         <li className="third">{item.user_name}发布</li>
       </div>
     )
   }
 
-  checkTestItem = (questions_id: string) => {
+  checkTestItem = (e: any, questions_id: string) => {
     this.props.history.push({
       pathname: "/main/question/detail",
       state: { questions_id }
     });
   }
-
+  changeQuestion = (e: any, questions_id: string) => {
+    // 阻止冒泡
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+    this.props.history.push({
+      pathname: "/main/changeQuestion",
+      state: { questions_id }
+    });
+  }
 }
 
 export default questionItem

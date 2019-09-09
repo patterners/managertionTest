@@ -21,3 +21,16 @@ export let getTestDetail = (id: string) => {
   console.log(id)
   return request.get("exam/questions/condition?questions_id=" + id)
 }
+
+
+
+// 获取特定的试题信息
+export let getOneQuestion = (id: string) => {
+  return request.get('/exam/questions/condition', { params: { questions_id: id } })
+}
+
+//  修改试题
+export let changeOneQuestion = (opt: object) => {
+  return request.put('/exam/questions/update', opt)
+}
+// /exam/questions/update

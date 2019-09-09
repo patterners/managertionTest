@@ -6,8 +6,9 @@ import Main from '@/views/main';
 import Question from '@/views/main/quertion/checkQuestion'
 import AddQuestion from '@/views/main/quertion/addQuestion'
 import ClassifyQuestion from '@/views/main/quertion/classifyQuestion'
+import ChangeQuestion from '@/views/main/quertion/changeQuestion'
 // 试题详情页 
-import QuestionDetail from '@/views/main/quertion/checkQuestion/testItemDetails'
+import QuestionDetail from '@/views/main/quertion/testItemDetails'
 
 //用户管理
 import AddUser from '@/views/main/userpage/adduser'
@@ -42,6 +43,11 @@ export default {
       }, {
         path: '/main/classifyQuestion',
         component: ClassifyQuestion
+      },
+
+      {
+        path: '/main/changeQuestion',
+        component: ChangeQuestion
       },
 
       {

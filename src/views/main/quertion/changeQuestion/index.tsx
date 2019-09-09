@@ -1,22 +1,17 @@
 import * as React from 'react'
 import Editor from 'for-editor'
 import './index.css'
-import { Form, Select, } from 'antd'
+import { Form, Select, message } from 'antd'
 import { inject, observer } from 'mobx-react'
-import { WrappedFormUtils } from 'antd/lib/form/Form'
 
 const { Option } = Select
-interface Props {
-  form: WrappedFormUtils,
-  addQuestion: any,
-  history: History,
-  abc?: string
-}
 
+@inject('changeQuestion')
 @inject('addQuestion')
 @observer
-class index extends React.Component<Props> {
+class index extends React.Component<any> {
   state = {
+    questions_id: '',
     titleValue: '',
     answer: '请输入内容...',
     question: '请输入内容...',
@@ -27,10 +22,23 @@ class index extends React.Component<Props> {
     subjectType: '',
     subjectTypeSelections: [],
   }
-  componentDidMount() {
-    this.handle_testTypeSelections.bind(this)()
-    this.handle_lessonTypeSelections.bind(this)()
-    this.handle_subjectTypeSelections.bind(this)()
+  async componentDidMount() {
+    await this.handle_testTypeSelections.bind(this)()
+    await this.handle_lessonTypeSelections.bind(this)()
+    await this.handle_subjectTypeSelections.bind(this)()
+    const id = this.props.location.state.questions_id
+    const result: any = (await this.props.changeQuestion.getOneQuestion(id)).data[0]
+    // console.log(result, '---------------')
+
+    this.setState({
+      questions_id: result.questions_id,
+      titleValue: result.title,
+      answer: result.questions_answer,
+      question: result.questions_stem,
+      testType: result.exam_id,
+      lessonType: result.subject_id,
+      subjectType: result.questions_type_id,
+    })
   }
 
   render() {
@@ -45,6 +53,7 @@ class index extends React.Component<Props> {
     // const { getFieldDecorator } = this.props.form;
     return (
       <div className="addQuestion">
+        修改试题
         <h3>添加试题</h3>
         <div className="content">
           <form action="">
@@ -70,7 +79,6 @@ class index extends React.Component<Props> {
             <Select
               showSearch
               style={{ width: 200 }}
-              placeholder="Select a person"
               optionFilterProp="children"
               onChange={e => this.hangdleChangeValue(e, 'testType')}
             >
@@ -82,7 +90,6 @@ class index extends React.Component<Props> {
                     </Option>
                 )
               }
-
             </Select>
           </form>
 
@@ -91,7 +98,6 @@ class index extends React.Component<Props> {
             <Select
               showSearch
               style={{ width: 200 }}
-              placeholder="Select a person"
               optionFilterProp="children"
               onChange={e => this.hangdleChangeValue(e, 'lessonType')}
             >
@@ -111,7 +117,6 @@ class index extends React.Component<Props> {
             <Select
               showSearch
               style={{ width: 200 }}
-              placeholder="Select a person"
               optionFilterProp="children"
               onChange={e => this.hangdleChangeValue(e, 'subjectType')}
             >
@@ -176,17 +181,29 @@ class index extends React.Component<Props> {
       testType,
       lessonType,
       subjectType,
+      questions_id
     } = this.state
-    const result = await this.props.addQuestion.postAddQuestion(({
-      questions_type_id: lessonType,
+    const result = await this.props.changeQuestion.changeOneQuestion(({
+      questions_type_id: subjectType,
       questions_stem: question,
-      subject_id: subjectType,
+      subject_id: lessonType,
       exam_id: testType,
       user_id,
       questions_answer: answer,
-      title: titleValue
+      title: titleValue,
+      questions_id
     }))
 
+    // 添加成功  进行提示
+
+    if (result.data) {
+      const { code, msg } = result.data
+      if (code) {
+        message.success(msg);
+      } else {
+        message.error(msg);
+      }
+    }
 
   }
 }

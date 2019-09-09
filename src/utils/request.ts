@@ -3,7 +3,6 @@ import { AxiosResponse } from 'axios/index';
 import { message } from 'antd';
 import { getToken } from './index';
 
-
 const instance = axios.create({
   baseURL: 'http://localhost:7001',
   timeout: 1000,
