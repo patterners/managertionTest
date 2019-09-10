@@ -75,7 +75,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'testType')}
             >
               {
-                testTypeSelections.length && testTypeSelections.map(
+                testTypeSelections && testTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.exam_id} key={index}>
                       {item.exam_name}
@@ -96,7 +96,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'lessonType')}
             >
               {
-                lessonTypeSelections.length && lessonTypeSelections.map(
+                lessonTypeSelections && lessonTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.subject_id} key={index}>
                       {item.subject_text}
@@ -116,7 +116,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'subjectType')}
             >
               {
-                subjectTypeSelections.length && subjectTypeSelections.map(
+                subjectTypeSelections && subjectTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.questions_type_id} key={index}>
                       {item.questions_type_text}
@@ -126,16 +126,6 @@ class index extends React.Component<any> {
             </Select>
           </form>
 
-          <div >
-            <p> 答案信息</p>
-            <div className="editorItem">
-              <Editor value={question} onChange={this.hangdleChangeValue.bind(this)} />
-            </div>
-          </div>
-        </div>
-        <button className="addQuestion-submit">提交</button>
-
-        <div >
           <p> 答案信息</p>
           <div className="editorItem">
             <Editor value={answer}
@@ -146,7 +136,6 @@ class index extends React.Component<any> {
       </div>
       <button onClick={this.handleSubmitQuestion.bind(this)}>提交</button>
     </div >
-
 
     )
   }
@@ -189,16 +178,17 @@ class index extends React.Component<any> {
       subjectType,
     } = this.state
     const result = await this.props.addQuestion.postAddQuestion(({
-      questions_type_id: lessonType,
+      questions_type_id: subjectType,
       questions_stem: question,
-      subject_id: subjectType,
+      subject_id: lessonType,
       exam_id: testType,
       user_id,
       questions_answer: answer,
       title: titleValue
     }))
+    // 判断之后进行提示和跳页面
 
-
+    this.props.history.push('/main/checkQuestion')
   }
 }
 

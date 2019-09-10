@@ -4,7 +4,6 @@ import * as React from 'react'
 import { inject, observer } from 'mobx-react'
 const ReactMarkdown = require('react-markdown')
 
-
 @inject('question')
 @observer
 class index extends React.Component<any>{
@@ -47,8 +46,7 @@ user_name: "dingshaoshan" */}
     </div>
   }
   async componentDidMount() {
-    // console.log(this.props.location.state)
-    // 请求详细的试卷数据
+    // 请求详细的试卷数据,渲染到markdown之中
     const id = this.props.location.state.questions_id
     const testDetail = await this.props.question.getTestDetail(id)
     console.log(testDetail)
@@ -58,8 +56,8 @@ user_name: "dingshaoshan" */}
       answer: item.questions_answer,
       item
     })
-    // 渲染到markdown之中
   }
+
 
 }
 export default index
