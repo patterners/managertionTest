@@ -28,7 +28,7 @@ class index extends React.Component<any> {
         <div>
           {
             // 渲染列表主体
-            list.length && list.map((item: any, index) =>
+            list  && list.map((item: any, index) =>
               <Item item={item} key={index} {...this.props} />
             )
           }

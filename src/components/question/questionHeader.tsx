@@ -32,7 +32,7 @@ export class questionHeader extends React.Component<any> {
             <span className={selectType === 0 ? "activeType" : ''}
               onClick={() => this.setState({ selectType: 0, subject_id: '' })}
             >ALL</span>{
-              lessonTypeSelections.length && lessonTypeSelections.map((item: any, index: number) => {
+              lessonTypeSelections && lessonTypeSelections.length && lessonTypeSelections.map((item: any, index: number) => {
                 return <span key={index} id={item.subject_id}
                   className={selectType === index + 1 ? "activeType" : ''}
                   onClick={() => {
@@ -55,7 +55,7 @@ export class questionHeader extends React.Component<any> {
                 onChange={e => this.hangdleChangeValue(e, 'exam_id')}
               >
                 {
-                  testTypeSelections.length && testTypeSelections.map(
+                  testTypeSelections && testTypeSelections.length && testTypeSelections.map(
                     (item: any, index: number) =>
                       <Option value={item.exam_id} key={index}>
                         {item.exam_name}
@@ -77,7 +77,7 @@ export class questionHeader extends React.Component<any> {
                 onChange={e => this.hangdleChangeValue(e, 'questions_type_id')}
               >
                 {
-                  subjectTypeSelections.length && subjectTypeSelections.map(
+                  subjectTypeSelections && subjectTypeSelections.length && subjectTypeSelections.map(
                     (item: any, index: number) =>
                       <Option value={item.questions_type_id} key={index}>
                         {item.questions_type_text}
@@ -98,17 +98,11 @@ export class questionHeader extends React.Component<any> {
 
   submitSearch = () => {
     const { exam_id, questions_type_id, subject_id } = this.state
-
     let opt: any = {}
-
     exam_id ? (opt.exam_id = exam_id) : null
     questions_type_id ? (opt.questions_type_id = questions_type_id) : null
     subject_id ? (opt.subject_id = subject_id) : null
-
-
-    console.log(opt)
     this.props.father.handleSearchQuestion(opt)
-
   }
   hangdleChangeValue = (e: any, name: string) => {
     if (e.target) {

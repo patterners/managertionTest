@@ -75,7 +75,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'testType')}
             >
               {
-                testTypeSelections.length && testTypeSelections.map(
+                testTypeSelections && testTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.exam_id} key={index}>
                       {item.exam_name}
@@ -96,7 +96,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'lessonType')}
             >
               {
-                lessonTypeSelections.length && lessonTypeSelections.map(
+                lessonTypeSelections && lessonTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.subject_id} key={index}>
                       {item.subject_text}
@@ -116,7 +116,7 @@ class index extends React.Component<any> {
               onChange={e => this.hangdleChangeValue(e, 'subjectType')}
             >
               {
-                subjectTypeSelections.length && subjectTypeSelections.map(
+                subjectTypeSelections && subjectTypeSelections.map(
                   (item: any, index) =>
                     <Option value={item.questions_type_id} key={index}>
                       {item.questions_type_text}
