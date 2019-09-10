@@ -126,16 +126,6 @@ class index extends React.Component<any> {
             </Select>
           </form>
 
-          <div >
-            <p> 答案信息</p>
-            <div className="editorItem">
-              <Editor value={question} onChange={this.hangdleChangeValue.bind(this)} />
-            </div>
-          </div>
-        </div>
-        <button className="addQuestion-submit">提交</button>
-
-        <div >
           <p> 答案信息</p>
           <div className="editorItem">
             <Editor value={answer}
@@ -146,7 +136,6 @@ class index extends React.Component<any> {
       </div>
       <button onClick={this.handleSubmitQuestion.bind(this)}>提交</button>
     </div >
-
 
     )
   }
@@ -189,16 +178,17 @@ class index extends React.Component<any> {
       subjectType,
     } = this.state
     const result = await this.props.addQuestion.postAddQuestion(({
-      questions_type_id: lessonType,
+      questions_type_id: subjectType,
       questions_stem: question,
-      subject_id: subjectType,
+      subject_id: lessonType,
       exam_id: testType,
       user_id,
       questions_answer: answer,
       title: titleValue
     }))
+    // 判断之后进行提示和跳页面
 
-
+    this.props.history.push('/main/checkQuestion')
   }
 }
 

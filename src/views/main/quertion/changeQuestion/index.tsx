@@ -205,6 +205,7 @@ class index extends React.Component<any> {
       }
     }
 
+    this.props.history.push('/main/checkQuestion')
   }
 }
 

@@ -13,6 +13,12 @@
     margin-right: 20px;
   }
 }
+.activeType {
+  background: blue;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #fff;
+}
 // 搜索功能区
 .testType {
   display: flex;
