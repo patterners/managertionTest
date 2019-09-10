@@ -50,3 +50,48 @@ li span{
     float: left;
     margin: 20px 0;
 }
+#classNumber,#curriculumName{
+    width: 80%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    height: 44px;
+    border:1px solid #ccc;
+}
+.mask{
+    width:100%;
+    height: 100%;
+    background: rgba(0,0,0,.4);
+    position: fixed;
+    left:0;
+    top:0;
+}
+.mask .mask-div{
+    width: 500px;
+    height: 500px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    background: #fff;
+    margin-top: 10%;
+}
+.mask .mask-div p{
+    padding-top: 40px;
+}
+.mask .mask-div #mask-cancel{
+    width: 150px;
+    height: 44px;
+    margin-left: 93px;
+    color:#fff;
+}
+.mask .mask-div #mask-submit{
+    width: 150px;
+    height: 44px;
+    margin-left: 15px;
+    color:#fff;
+}
+.mask .mask-div #mask-btn{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding-left: 50px;
+}

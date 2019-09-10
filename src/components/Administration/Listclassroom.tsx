@@ -30,7 +30,7 @@ class Listclass extends React.Component<PorpsInfo> {
     }
     async del(id: any) {
         await this.props.question.deleteclass(id)
-        this.props.father.props.question.getclassroom()
+        this.props.father()
     }
 }
 export default Listclass

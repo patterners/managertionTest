@@ -1,12 +1,14 @@
 import * as React from 'react';
 import "./classlist.css"
-// import { inject, observer } from "mobx-react"    
+import { inject, observer } from "mobx-react"
 interface PorpsInfo {
     list: any,
-    // question?: any
+    getclassfn: any,
+    bianji: any,
+    question?: any
 }
-// @inject("question")
-// @observer
+@inject("question")
+@observer
 class Listclass extends React.Component<PorpsInfo> {
     render() {
         const { list } = this.props
@@ -24,7 +26,7 @@ class Listclass extends React.Component<PorpsInfo> {
                         <div>{item.subject_text}</div>
                         <div>{item.room_text}</div>
                         <div>
-                            <b onClick={this.edit.bind(this)}>编辑</b>|<b onClick={this.del.bind(this, item.room_id)}>删除</b>
+                            <b onClick={this.edit.bind(this, item)}>编辑</b>|<b onClick={this.del.bind(this, item.grade_id)}>删除</b>
                         </div>
                     </div>
                 })}
@@ -33,12 +35,19 @@ class Listclass extends React.Component<PorpsInfo> {
         )
     }
     //删除
-    del(id: any) {
-    //    await this.props.question.deleteclass(id)
+    async del(id: any) {
+        await this.props.question.deleteclassroom(id)
+        this.props.getclassfn()
     }
     //编辑
-    edit() {
-
+    edit(item: any) {
+        this.props.bianji(item)
+        // console.log(item)
+        // grade_id: "oery4-9h55c-76sdkj-fba5ag"
+        // grade_name: "1609A"
+        // room_id: null
+        // subject_id: "fqtktr-1lq5u"
+        // subject_text: "javaScript上"
     }
 }
 export default Listclass

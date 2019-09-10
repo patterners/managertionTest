@@ -60,7 +60,7 @@ class Classroom extends React.Component<Props> {
                         </Modal>
                     </div>
                     <div className="list">
-                        <Listclassroom father={this} list={this.state["classList"]} />
+                        <Listclassroom father={this.getclassroom} list={this.state["classList"]} />
                     </div>
                 </div>
             </div>
@@ -69,7 +69,6 @@ class Classroom extends React.Component<Props> {
 
     componentDidMount() {
         this.getclassroom()
-
     }
     async getclassroom() {
         const { data } = await this.props.question.getclassroom()
