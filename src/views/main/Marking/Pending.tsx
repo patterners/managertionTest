@@ -50,7 +50,8 @@ class ClassAdministration extends React.Component<Props> {
         )
     }
     async componentDidMount() {
-        const { data } = await this.props.question.getclass()
+        const { data } = await this.props.question.noclassroom()
+        console.log(data)
         this.setState({
             data
         })

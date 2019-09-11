@@ -20,6 +20,7 @@ export let deleteclassroom = (id: any) => {
 }
 //添加班级
 export let addclass = (params: any) => {
+  console.log(params)
   return request.post("/manger/grade", params)
 }
 
@@ -27,6 +28,7 @@ export let addclass = (params: any) => {
 export let noclassroom = () => {
   return request.get("/manger/grade")
 }
+
 
 //获取教室管理的数据
 export let getclassroom = () => {
@@ -42,6 +44,10 @@ export let deleteclass = (id: any) => {
 //获取没有分班
 export let getstudent = () => {
   return request.get("/manger/student/new")
+}
+//学生列表
+export let student = () => {
+  return request.get("/manger/student")
 }
 //添加教室
 export let addclassroom = (text: string) => {
@@ -74,4 +80,15 @@ export let getOneQuestion = (id: string) => {
 export let changeOneQuestion = (opt: object) => {
   return request.put('/exam/questions/update', opt)
 }
+
+// 添加类型
+export let addQuestionType = (opt: object) => {
+  return request.post('/exam/insertQuestionsType', opt)
+}
+
+// 删除类型
+export let removeQuestionType = (opt: object) => {
+  return request.post('/exam/delQuestionsType', opt)
+}
+
 
