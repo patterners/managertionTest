@@ -14,8 +14,9 @@ import QuestionDetail from '@/views/main/quertion/testItemDetails'
 import AddUser from '@/views/main/userpage/adduser'
 import UserShow from '@/views/main/userpage/usershow'
 //考试管理
-import AddTest from "@/views/main/testpage/addtest"
+import AddTest from "@/views/main/testpage/addTestPage/addtest"
 import TestList from "@/views/main/testpage/testList"
+                           
 //班级管理
 import StudentAdministration from "@/views/main/Administration/StudentAdministration"
 import ClassAdministration from "@/views/main/Administration/classAdministration"

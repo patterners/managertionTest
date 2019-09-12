@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 
 import {
-  getQuestion, student, noclassroom, updataclass, addclass, deleteclassroom, getTestDetail, getQuestionsType, getclass, getclassroom, deleteclass, removeQuestionType,
+  getQuestion, noclassroom, updataclass, addclass, deleteclassroom, getTestDetail, getQuestionsType, getclass, getclassroom, deleteclass, removeQuestionType,student,
   addQuestionType, getstudent, addclassroom, deleteStudent
 } from '@/service/index'
 class Question {
@@ -54,7 +54,6 @@ class Question {
   }
   // 添加班级接口
   @action async addclass(grade_name: any, room_id: any, subject_id: any): Promise<any> {
-    console.log(grade_name, room_id, subject_id)
     let result: any = await addclass({ grade_name, room_id, subject_id });
     return result
   }
@@ -74,6 +73,7 @@ class Question {
     let result: any = await student();
     return result
   }
+
   // 按条件获取试题类型
   @action async getQuestionsType(): Promise<any> {
     let result: any = await getQuestionsType();
@@ -90,8 +90,6 @@ class Question {
     const result: any = removeQuestionType(opt)
     return result
   }
-
-
 }
 
 export default Question;

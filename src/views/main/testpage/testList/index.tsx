@@ -43,10 +43,15 @@ const data = [
   },
 ];
 
-@inject('addQuestion')
+@inject('addQuestion', 'testPage')
 @observer
 class index extends React.Component<any>{
+  constructor(props: any) {
+    super(props)
+    this.getTestPageList = this.getTestPageList.bind(this)
+  }
   state = {
+    testPageList: [],
     testType: '',
     testTypeSelections: [],
     lessonType: '',
@@ -123,7 +128,39 @@ class index extends React.Component<any>{
   }
   // 分类试卷查询
   async handleTestQuestion() {
+    console.log(this.state)
+    let obj = {}
 
+    // 添加筛选条件
+    // exam_exam_id	  否	string	试卷id
+    // subject_id	    否	string	学科id
+    // title	        否	string	试卷标题
+    // number	        否	number	试卷试题数量
+    // start_time	    否	number	考试开始时间
+    // end_time	      否	number	考试结束时间
+    // page	          否	number	当前页码，默认1
+    // pageSize	      否	number	每页数据量，默认10
+
+    const { testType, lessonType, subjectType } = this.state
+    // testType ?obj.:null
+    // lessonType ?obj.:null
+    // subjectType?obj.:null
+
+    // 获取对应的试卷
+    this.getTestPageList(obj)
+  }
+
+  async getTestPageList(obj: object) {
+    console.log(this.props)
+    const testPageList = (await this.props.testPage.getTestPageList(obj)).exam
+    console.log(testPageList)
+
+    //  处理数据后进行sst 并动态渲染
+
+
+
+    this.setState({ testPageList })
+    // 
   }
 
   hangdleChangeValue = (e: any, name: string) => {
@@ -154,4 +191,6 @@ class index extends React.Component<any>{
 }
 
 export default index
+
+// 点击详情时跳转到试题详情页面
 
