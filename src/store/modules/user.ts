@@ -20,10 +20,9 @@ class User {
 
     @action async login(form: any): Promise<any> {
         let result: any = await login(form);
-        console.log('result...', result);
         if (result.code === 1){
             // 1.判断是否记住用户名和密码
-            if (form.remember){
+          if (form.remember) {
                 window.localStorage.setItem('account', JSON.stringify(form));
             }else{
                 window.localStorage.removeItem('account');

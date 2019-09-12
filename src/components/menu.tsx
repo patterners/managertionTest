@@ -48,9 +48,6 @@ class MenuAntd extends React.Component {
                                 <span>用户管理</span>
                             </span>
                         }>
-                        <Menu.Item key="5">添加用户</Menu.Item>
-                        <Menu.Item key="6">用户展示</Menu.Item>
-
                         <Menu.Item key="5">
                             <Link to="/main/adduser">添加用户</Link>
                         </Menu.Item>
@@ -68,8 +65,12 @@ class MenuAntd extends React.Component {
                                 <span>考试管理</span>
                             </span>
                         }>
-                        <Menu.Item key="9">添加考试</Menu.Item>
-                        <Menu.Item key="10">考试列表</Menu.Item>
+                        <Menu.Item key="9">
+                            <Link to="/main/addtest">添加考试</Link>
+                        </Menu.Item>
+                        <Menu.Item key="10">
+                            <Link to="/main/testList">  考试列表</Link>
+                        </Menu.Item>
                     </SubMenu>
                     {/* 班级管理 */}
                     <SubMenu
@@ -80,9 +81,15 @@ class MenuAntd extends React.Component {
                                 <span>班级管理</span>
                             </span>
                         }>
-                        <Menu.Item key="9">班级管理</Menu.Item>
-                        <Menu.Item key="10">教室管理</Menu.Item>
-                        <Menu.Item key="11">学生管理</Menu.Item>
+                        <Menu.Item key="9">
+                            <Link to="/main/classAdministration">班级管理</Link>
+                        </Menu.Item>
+                        <Menu.Item key="10">
+                            <Link to="/main/Classroom">教室管理</Link>
+                        </Menu.Item>
+                        <Menu.Item key="11">
+                            <Link to="/main/StudentAdministration">学生管理</Link>
+                        </Menu.Item>
                     </SubMenu>
                     {/* 阅卷管理 */}
                     <SubMenu
@@ -93,7 +100,9 @@ class MenuAntd extends React.Component {
                                 <span>阅卷管理</span>
                             </span>
                         }>
-                        <Menu.Item key="9">待批班级</Menu.Item>
+                        <Menu.Item key="12">
+                            <Link to="/main/pending">待批班级</Link>
+                        </Menu.Item>
                     </SubMenu>
                 </Menu>
             </Sider>

@@ -1,0 +1,28 @@
+h2{
+    width: 100%;
+    height: 80px;
+    line-height: 80px;
+    padding-left: 5px;
+}
+.pending{
+    width: 96%;
+    height: 600px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px 20px;
+}
+.table table{
+    width: 100%;
+}
+.table table tr{
+    height: 55px;
+    line-height: 55px;
+    background: #eee;
+    border-bottom: 1px solid #ccc;
+}
+.table table tr td{
+    padding-left: 10px;
+}
+.table table .tr_bg{
+    background:#fff;
+}

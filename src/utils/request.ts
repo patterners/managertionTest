@@ -3,7 +3,6 @@ import { AxiosResponse } from 'axios/index';
 import { message } from 'antd';
 import { getToken } from './index';
 
-
 const instance = axios.create({
   baseURL: 'http://localhost:7001',
   timeout: 1000,
@@ -23,13 +22,11 @@ instance.interceptors.request.use((config) => {
 // 响应拦截器
 instance.interceptors.response.use((response: AxiosResponse<any>) => {
   // Do something with response data
-  console.log('response...', response);
   if (response.status !== 200) {
     message.error(response.statusText);
   }
   return response.data;
 }, (error) => {
-  console.log('error...', error.response);
   if (error.response.status && error.response.status !== 200) {
     message.error(error.response.statusText);
   } else {

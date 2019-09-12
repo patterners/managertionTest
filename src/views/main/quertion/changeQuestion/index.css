@@ -55,7 +55,7 @@
 .addQuestion .editorItem p {
   padding-left: 15px;
 }
-.addQuestion .addQuestion-submit {
+.addQuestion button {
   position: relative;
   width: 100px;
   margin-left: 80px;

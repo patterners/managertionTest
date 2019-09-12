@@ -3,8 +3,10 @@ import "../userpage/user.css"
 //下拉菜单组件
 import Selectmodule from '../../../components/select'
 //
-import Buttonmodule from '../../../components/question/button'
 class AddUser extends React.Component {
+    userConfirm() {
+        
+    }
     render() {
         return (
             <div>
@@ -26,7 +28,8 @@ class AddUser extends React.Component {
                         </div>
 
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" onClick={this.userConfirm.bind(this)} />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
 
                     </div>
@@ -39,7 +42,8 @@ class AddUser extends React.Component {
                         </div>
 
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -56,7 +60,8 @@ class AddUser extends React.Component {
                             <input type="text" placeholder=" 请输入api接口权限方法" />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -67,7 +72,8 @@ class AddUser extends React.Component {
                             <Selectmodule />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -81,11 +87,12 @@ class AddUser extends React.Component {
                             <Selectmodule />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
-                    <div className="tab">
+                        <div className="tab">
                             <span className="active">给身份设置视图权限</span>
                         </div>
                         <div className="userinp">
@@ -95,7 +102,8 @@ class AddUser extends React.Component {
                             <Selectmodule />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                 </div>
