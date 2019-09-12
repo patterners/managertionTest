@@ -20,6 +20,7 @@ export let deleteclassroom = (id: any) => {
 }
 //添加班级
 export let addclass = (params: any) => {
+  console.log(params)
   return request.post("/manger/grade", params)
 }
 
@@ -43,6 +44,10 @@ export let deleteclass = (id: any) => {
 //获取没有分班
 export let getstudent = () => {
   return request.get("/manger/student/new")
+}
+//学生列表
+export let student = () => {
+  return request.get("/manger/student")
 }
 //添加教室
 export let addclassroom = (text: string) => {

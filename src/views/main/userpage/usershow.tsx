@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./usershow.css"
-import { Table } from 'antd';
+import { Tabs, Table } from 'antd';
+const { TabPane } = Tabs;
 const columns = [
     {
         title: '用户',
@@ -36,28 +37,43 @@ const data = [
     },
 ];
 class Usershow extends React.Component {
+    callback(key: any) {
+        console.log(key)
+    }
     render() {
         return (
             <div className="usershow">
                 <h2>用户展示</h2>
-                <div className="spans">
-                    <div className="active">用户数据</div>
-                    <div>身份数据</div>
-                    <div>api接口权限</div>
-                    <div>身份和api接口关系</div>
-                    <div>视图接口权限</div>
-                    <div>身份和视图权限关系</div>
-                </div>
-                <div className="change-content">
-                    <div>
-                        <h2>用户数据</h2>
-                        <div>
-                            <Table columns={columns} dataSource={data} size="middle" />
-                        </div>
-                    </div>
+                <div>
+                    <Tabs onChange={this.callback.bind(this)} type="card">
+                        <TabPane tab="用户数据" key="1">
+                            <h1>用户数据</h1>
+                            <div>
+                                <Table columns={columns} dataSource={data} size="middle" />
+                            </div>
+                        </TabPane>
+                        <TabPane tab="身份数据" key="2">
+                            <h1>身份数据</h1>
+                        </TabPane>
+                        <TabPane tab="api接口权限" key="3">
+                            <h1>api接口权限</h1>
+                        </TabPane>
+                        <TabPane tab="身份和api接口关系" key="4">
+                            <h1>身份和api接口关系</h1>
+                        </TabPane>
+                        <TabPane tab="视口接口权限" key="5">
+                            <h1>视口接口权限</h1>
+                        </TabPane>
+                        <TabPane tab="身份和视图权限关系" key="6">
+                            <h1>身份和视图权限关系</h1>
+                        </TabPane>
+                    </Tabs>
                 </div>
             </div>
         )
     }
 }
 export default Usershow
+
+
+

@@ -42,12 +42,6 @@ class Listclass extends React.Component<PorpsInfo> {
     //编辑
     edit(item: any) {
         this.props.bianji(item)
-        // console.log(item)
-        // grade_id: "oery4-9h55c-76sdkj-fba5ag"
-        // grade_name: "1609A"
-        // room_id: null
-        // subject_id: "fqtktr-1lq5u"
-        // subject_text: "javaScript上"
     }
 }
 export default Listclass

@@ -3,22 +3,9 @@
   height: 80px;
   line-height: 80px;
   padding-left: 5px;
+  font-size: 20px;
 }
-.spans {
-  width: 70%;
-  height: 38px;
-  align-items: center;
-  display: flex;
-  background: #fff;
-}
-.spans div {
-  flex:1;
-  height: 38px;
-  line-height: 38px;
-  border:1px solid #ccc;
-  text-align: center
-}
-.spans .active{
-  border:1px solid blue;
-  color:blue
+h1{
+  font-size: 30px;
+  padding: 25px;
 }

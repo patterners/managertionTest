@@ -13,7 +13,8 @@ interface Props {
 class ClassAdministration extends React.Component<Props> {
     state = { visible: false, flag: false, grade_id: "", list: [], classList: [], clssroomList: [], classname: "", classNumber: "", curriculumName: "" };
 
-    showModal = () => {
+    async showModal() {
+        const data1 = await this.props.question.noclassroom();
         this.setState({
             visible: true,
         });
@@ -21,7 +22,6 @@ class ClassAdministration extends React.Component<Props> {
 
     async handleOk(e: any) {
         await this.props.question.addclass(this.state.classname, this.state.classNumber, this.state.curriculumName)
-        this.getclass()
         this.setState({
             visible: false,
         });
@@ -50,7 +50,7 @@ class ClassAdministration extends React.Component<Props> {
                 <h2>班级管理</h2>
                 <div className="antd-dabox">
                     <div className="and-but">
-                        <Button className="button" size="large" type="primary" onClick={this.showModal}>+ 添加班级</Button>
+                        <Button className="button" size="large" type="primary" onClick={this.showModal.bind(this)}>+ 添加班级</Button>
                         <Modal
                             title="添加班级"
                             visible={this.state.visible}
@@ -139,9 +139,7 @@ class ClassAdministration extends React.Component<Props> {
     }
     async submit() {
         console.log(this.state.grade_id, this.state.classNumber, this.state.curriculumName)
-        // 0h3i3-f7yyg-vckzjp-le2gvn  123  node基础
-        // await this.props.question.updataclass(this.state.grade_id, this.state.classNumber, this.state.curriculumName)
-        // { grade_id, grade_name, subject_id, room_id: "" }
+        await this.props.question.updataclass(this.state.grade_id, this.state.classNumber, this.state.curriculumName)
         this.setState({
             flag: false
         })
@@ -154,7 +152,7 @@ class ClassAdministration extends React.Component<Props> {
         const result = await this.props.question.getclassroom()
         const data1 = (await this.props.question.noclassroom()).data;
         this.setState({
-            classList: [...data,...data1],
+            classList: [...data, ...data1],
             clssroomList: result.data
         })
     }
