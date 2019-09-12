@@ -171,7 +171,19 @@ module.exports = {
               compact: true,
             },
           },
-
+          {
+            test: /\.s[ac]ss$/i,
+            loader: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true
+                },
+              },
+              'sass-loader'
+            ],
+          },
           // Compile .tsx?
           {
             test: /\.(ts|tsx)$/,

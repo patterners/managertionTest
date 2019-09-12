@@ -4,19 +4,30 @@ import User from './modules/user';
 import Question from './modules/question';
 import Addquestion from './modules/addQuestion'
 import ChangeQuestion from './modules/changeQuestion'
+<<<<<<< HEAD
 import TestPage from './modules/testPage'
+=======
+>>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
 
 // 实例化模块
 const user = new User();
 const question = new Question();
 const addQuestion = new Addquestion()
 const changeQuestion = new ChangeQuestion()
+<<<<<<< HEAD
 const testPage = new TestPage()
+=======
+
+>>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
 
 export default {
   user,
   question,
   addQuestion,
+<<<<<<< HEAD
   changeQuestion,
   testPage
+=======
+  changeQuestion
+>>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
 }
