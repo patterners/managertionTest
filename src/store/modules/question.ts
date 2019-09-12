@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 
 import {
-  getQuestion, student, noclassroom, updataclass, addclass, deleteclassroom, getTestDetail, getQuestionsType, getclass, getclassroom, deleteclass, removeQuestionType,
+  getQuestion, noclassroom, updataclass, addclass, deleteclassroom, getTestDetail, getQuestionsType, getclass, getclassroom, deleteclass, removeQuestionType,student,
   addQuestionType, getstudent, addclassroom, deleteStudent
 } from '@/service/index'
 class Question {
@@ -73,6 +73,7 @@ class Question {
     let result: any = await student();
     return result
   }
+
   // 按条件获取试题类型
   @action async getQuestionsType(): Promise<any> {
     let result: any = await getQuestionsType();
