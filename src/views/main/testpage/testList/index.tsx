@@ -43,7 +43,6 @@ const data = [
   },
 ];
 
-<<<<<<< HEAD
 @inject('addQuestion', 'testPage')
 @observer
 class index extends React.Component<any>{
@@ -53,12 +52,6 @@ class index extends React.Component<any>{
   }
   state = {
     testPageList: [],
-=======
-@inject('addQuestion')
-@observer
-class index extends React.Component<any>{
-  state = {
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
     testType: '',
     testTypeSelections: [],
     lessonType: '',
@@ -135,7 +128,6 @@ class index extends React.Component<any>{
   }
   // 分类试卷查询
   async handleTestQuestion() {
-<<<<<<< HEAD
     console.log(this.state)
     let obj = {}
 
@@ -169,9 +161,6 @@ class index extends React.Component<any>{
 
     this.setState({ testPageList })
     // 
-=======
-
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
   }
 
   hangdleChangeValue = (e: any, name: string) => {
@@ -203,8 +192,5 @@ class index extends React.Component<any>{
 
 export default index
 
-<<<<<<< HEAD
 // 点击详情时跳转到试题详情页面
 
-=======
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206

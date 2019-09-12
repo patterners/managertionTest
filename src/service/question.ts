@@ -28,11 +28,8 @@ export let noclassroom = () => {
   return request.get("/manger/grade")
 }
 
-<<<<<<< HEAD
 
 //获取教室管理的数据
-=======
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
 export let getclassroom = () => {
   return request.get("/manger/room")
 }
@@ -79,10 +76,6 @@ export let changeOneQuestion = (opt: object) => {
   return request.put('/exam/questions/update', opt)
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
 // 添加类型
 export let addQuestionType = (opt: object) => {
   return request.post('/exam/insertQuestionsType', opt)
@@ -94,7 +87,3 @@ export let removeQuestionType = (opt: object) => {
 }
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4c3954d9c1f8644ee1c25c652ed8218febf18206
