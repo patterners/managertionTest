@@ -1,6 +1,6 @@
 //import { LoginForm } from './../../types/index';
 import { observable, action } from 'mobx'
-import { login,viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata } from '@/service/index'
+import { login, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata } from '@/service/index'
 import { setToken, removeToken } from '@/utils/index'
 
 // 获取本地存储的用户信息
@@ -17,6 +17,31 @@ interface LoginForm {
 class User {
     @observable isLogin: boolean = false;
     @observable account: any = account;
+    //请选择已有api权限
+    @action async apiauthority(): Promise<any> {
+        let result: any = await apiauthority();
+        return result
+    }
+    //请选择已有视图权限
+    @action async viewauthority(): Promise<any> {
+        let result: any = await viewauthority();
+        return result
+    }
+    //请选择已有视图
+    @action async hasview(): Promise<any> {
+        let result: any = await hasview();
+        return result
+    }
+    //请选择id
+    @action async uid(): Promise<any> {
+        let result: any = await uid();
+        return result
+    }
+    //身份和视图权限关系
+    @action async relationship(): Promise<any> {
+        let result: any = await relationship();
+        return result
+    }
     //视口接口的权限
     @action async viewdata(): Promise<any> {
         let result: any = await viewdata();

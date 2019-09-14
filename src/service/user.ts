@@ -24,3 +24,23 @@ export let InterfaceJurisdiction = () => {
 export let viewdata = () => {
     return request.get('/user/view_authority');
 }
+//身份和视口权限关系
+export let relationship = () => {
+    return request.get('/user/identity_view_authority_relation');
+}
+//请选择id
+export let uid = () => {
+    return request.get('/user/identity');
+}
+//请选择已有视图
+export let hasview = () => {
+    return request.get('/user/new?user_id=w6l6n-cbvl6s');
+}
+//请选择已有视图权限
+export let viewauthority = () => {
+    return request.get('/user/view_authority');
+}
+//请选择已有api权限
+export let apiauthority = () => {
+    return request.get('/user/api_authority');
+}

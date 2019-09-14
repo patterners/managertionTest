@@ -137,10 +137,9 @@ class Usershow extends React.Component<any> {
             const { data } = await this.props.user.viewdata()
             const newdata = data.map((item: any) => {
                 return {
-                    key: item.api_authority_id,
-                    name: item.api_authority_text,
-                    age: item.api_authority_url,
-                    address: item.api_authority_method
+                    key: item.view_authority_id,
+                    name: item.view_authority_text,
+                    age: item.view_id,
                 }
             })
             this.setState({
@@ -150,10 +149,10 @@ class Usershow extends React.Component<any> {
             const { data } = await this.props.user.relationship()
             const newdata = data.map((item: any) => {
                 return {
-                    key: item.api_authority_id,
-                    name: item.api_authority_text,
-                    age: item.api_authority_url,
-                    address: item.api_authority_method
+                    key: item.identity_view_authority_relation_id,
+                    name: item.identity_text,
+                    age: item.view_authority_text,
+                    address: item.view_id
                 }
             })
             this.setState({
