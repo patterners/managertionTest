@@ -31,17 +31,21 @@ const columns = [
     dataIndex: 'actions',
   },
 ];
-const data = [
-  {
-    key: '1',
-    testMessage: 'John Brown',
-    class: 32,
-    author: 'New York No. 1 Lake Park',
-    startTime: '',
-    endTime: '',
-    actions: ''
-  },
-];
+const formDate = (time: number) => {
+  const timestr = (new Date(time)).toLocaleString()
+  // const str = timestr.slice(0, 10) + ' ' + timestr.slice(12)
+  const str = timestr.replace(/[^0-9|\/|:]/g, ' ')
+  return str
+}
+const differTime = (time: number) => {
+  const addZero = (num: number) => {
+    return num ? `0${num}` : num
+  }
+  const hours = time / 1000 / 60 / 60 % 60 | 0
+  const minute = time / 1000 / 60 % 60 | 0
+  const second = time / 1000 % 60 | 0
+  return `${hours}:${addZero(minute)}:${addZero(second)}`
+}
 
 @inject('addQuestion', 'testPage')
 @observer
@@ -61,7 +65,7 @@ class index extends React.Component<any>{
   }
   render() {
 
-    const { testTypeSelections, lessonTypeSelections } = this.state
+    const { testTypeSelections, lessonTypeSelections, testPageList } = this.state
     return (
       // <div className={styles.testList}>
       <div className={'testList'}>
@@ -115,16 +119,18 @@ class index extends React.Component<any>{
                         <button>进行中 </button>
                         <button>已结束</button> */}
           </p>
-          <Table columns={columns} dataSource={data} size="middle" />
+          <Table columns={columns} dataSource={testPageList} size="middle" />
         </div>
       </div>
     )
   }
 
+
   componentDidMount() {
     this.handle_testTypeSelections.bind(this)()
     this.handle_lessonTypeSelections.bind(this)()
     this.handle_subjectTypeSelections.bind(this)()
+    this.getTestPageList({})
   }
   // 分类试卷查询
   async handleTestQuestion() {
@@ -150,19 +156,26 @@ class index extends React.Component<any>{
     this.getTestPageList(obj)
   }
 
+  // 获取试卷列表
   async getTestPageList(obj: object) {
-    console.log(this.props)
-    const testPageList = (await this.props.testPage.getTestPageList(obj)).exam
-    console.log(testPageList)
-
+    const result = (await this.props.testPage.getTestPageList(obj)).exam
+    const testPageList = result.map((item: any, index: number) => {
+      return {
+        key: index,
+        testMessage: item.title + '考试时间：  ' + differTime(item.end_time - item.start_time) + " " + JSON.parse(item.question_ids).length + '道题  作弊0分',
+        class: '考试班级' + item.grade_name,
+        author: item.user_name,
+        startTime: formDate(+item.start_time),
+        endTime: formDate(+item.end_time),
+        actions: '详情'
+      }
+    })
     //  处理数据后进行sst 并动态渲染
-
-
-
     this.setState({ testPageList })
     // 
   }
 
+  // 动态设置状态
   hangdleChangeValue = (e: any, name: string) => {
     if (e.target) {
       this.setState({ [name]: e.target.value })
@@ -188,9 +201,14 @@ class index extends React.Component<any>{
     const subjectTypeSelections: [] = (await this.props.addQuestion.getSubjectType()).data
     this.setState({ subjectTypeSelections })
   }
+
+  // 跳转试卷详情  回调
+  handleToTestDetail = (id: string) => {
+    this.props.history.push('')
+  }
 }
 
 export default index
 
-// 点击详情时跳转到试题详情页面
+
 
