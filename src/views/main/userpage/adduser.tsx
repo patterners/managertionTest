@@ -1,11 +1,31 @@
 import * as React from "react";
 import "../userpage/user.css"
+import { inject, observer } from "mobx-react"
 //下拉菜单组件
 import Selectmodule from '../../../components/select'
-//
-class AddUser extends React.Component {
+@inject("user")
+@observer
+class AddUser extends React.Component<any> {
+    state = {
+        uid: [],
+        hasview: [],
+        viewauthority: [],
+        apiauthority:[]
+    }
+    async componentDidMount() {
+        const uid = await this.props.user.uid()
+        const hasview = await this.props.user.hasview()
+        const viewauthority = await this.props.user.viewauthority()
+        const apiauthority = await this.props.user.apiauthority()
+        this.setState({
+            uid: uid.data,
+            hasview: hasview.data,
+            viewauthority: viewauthority.data,
+            apiauthority:apiauthority.data
+        })
+    }
     userConfirm() {
-        
+
     }
     render() {
         return (
@@ -24,7 +44,7 @@ class AddUser extends React.Component {
                             <input type="text" placeholder=" 请输入密码" />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
 
                         <div className="buts">
@@ -69,7 +89,7 @@ class AddUser extends React.Component {
                             <span className="active">添加视图接口权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule viewauthority={this.state.viewauthority} />
                         </div>
                         <div className="buts">
                             <input type="button" value="确定" className="confirm" />
@@ -81,10 +101,10 @@ class AddUser extends React.Component {
                             <span className="active">给身份设置api接口权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule apiauthority={this.state.apiauthority} />
                         </div>
                         <div className="buts">
                             <input type="button" value="确定" className="confirm" />
@@ -96,10 +116,10 @@ class AddUser extends React.Component {
                             <span className="active">给身份设置视图权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule hasview={this.state.hasview} />
                         </div>
                         <div className="buts">
                             <input type="button" value="确定" className="confirm" />
