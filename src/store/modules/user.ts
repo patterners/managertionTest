@@ -1,6 +1,6 @@
 //import { LoginForm } from './../../types/index';
 import { observable, action } from 'mobx'
-import { login, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata } from '@/service/index'
+import { login, detailtest, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata } from '@/service/index'
 import { setToken, removeToken } from '@/utils/index'
 
 // 获取本地存储的用户信息
@@ -17,6 +17,11 @@ interface LoginForm {
 class User {
     @observable isLogin: boolean = false;
     @observable account: any = account;
+    //批卷跳详情
+    @action async detailtest(id: any): Promise<any> {
+        let result: any = await detailtest(id);
+        return result
+    }
     //请选择已有api权限
     @action async apiauthority(): Promise<any> {
         let result: any = await apiauthority();

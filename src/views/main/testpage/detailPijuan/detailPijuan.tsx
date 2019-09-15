@@ -1,6 +1,21 @@
 import * as React from "react";
 import "./detailpijuan.css"
-class DetailPijuan extends React.Component {
+import { inject, observer } from "mobx-react"
+@inject("user", "question")
+@observer
+class DetailPijuan extends React.Component<any> {
+    state = {
+        examData: [],
+        optionData: []
+    }
+    async componentDidMount() {
+        const { exam } = await this.props.user.detailtest(this.props.location.state.grade_id)
+        const { data } = await this.props.question.noclassroom()
+        this.setState({
+            examData: exam,
+            optionData: data
+        })
+    }
     render() {
         return (
             <div className="detailpijuan">
@@ -14,7 +29,9 @@ class DetailPijuan extends React.Component {
                     <div className="class">
                         <span>班级:</span>
                         <select>
-                            <option></option>
+                            {this.state.optionData && this.state.optionData.map((item: any,index:number) => {
+                                return <option key={index} value={item.grade_name}>{item.grade_name}</option>
+                            })}
                         </select>
                     </div>
                     <div className="seek">
@@ -33,6 +50,27 @@ class DetailPijuan extends React.Component {
                             <td>成材率</td>
                             <td>操作</td>
                         </tr>
+                        {this.state.examData && this.state.examData.map((item: any) => {
+                            // answer_json_path: "7m3c2n-utg4gb-t2cpd9-0py1wb.json"
+                            // end_time: "1552707000000"
+                            // exam_exam_id: "ycv39-mfh85"
+                            // exam_student_id: "7m3c2n-utg4gb-t2cpd9-0py1wb"
+                            // grade_id: "tjdbk9-r8dbn8-4wsck-c7akdb"
+                            // score: 0
+                            // start_time: "1552701600000"
+                            // status: 0
+                            // student_id: "17382100377"
+                            // student_name: "魏薇"
+                            return <tr className="trlist" key={item.exam_exam_id}>
+                                <td>{this.props.location.state.grade_name}</td>
+                                <td>{item.student_name}</td>
+                                <td>未阅</td>
+                                <td>{item.start_time}</td>
+                                <td>{item.end_time}</td>
+                                <td>-</td>
+                                <td className="color_blue">批卷</td>
+                            </tr>
+                        })}
                     </table>
                 </div>
             </div>

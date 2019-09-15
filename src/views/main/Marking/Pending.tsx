@@ -14,7 +14,7 @@ class ClassAdministration extends React.Component<Props> {
         data: []
     }
     routerdetail(item:any){
-        this.props.history.push("/main/detailpijuan")
+        this.props.history.push("/main/detailpijuan",item)
     }
     render() {
         return (

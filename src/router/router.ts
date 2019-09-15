@@ -85,7 +85,7 @@ export default {
 
       },
       {
-        path: '/main/detailpijuan',
+        path: '/main/detailpijuan/:item?',
         component: Detailpijuan
 
       }
