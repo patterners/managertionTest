@@ -1,7 +1,12 @@
-//import { LoginForm } from './../../types/index';
+// import { Url, } from './../../types/model/userLogin';
+/// <reference path="../../types/model/userLogin.ts"/>
+import * as Url from 'url'
 import { observable, action } from 'mobx'
 import { login, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata, getIdentityView } from '@/service/index'
 import { setToken, removeToken } from '@/utils/index'
+
+
+console.log(Url, 'interFace')
 
 // 获取本地存储的用户信息
 let account = {};
@@ -10,11 +15,11 @@ if (window.localStorage.getItem('account')) {
   account = JSON.parse(window.localStorage.getItem('account') + '');
 }
 
-interface LoginForm {
-  user_name: string,
-  user_pwd: string
-}
-class User {
+// interface LoginForm {
+//   user_name: string,
+//   user_pwd: string
+// }
+class User<Url,LoginForm> {
   @observable isLogin: boolean = false;
   @observable account: any = account;
   @observable identity_text: string = ""
@@ -92,14 +97,12 @@ class User {
     removeToken();
   }
 
-
   @action async getIdentityViewAction() {
     let result = await getIdentityView()
     //this.identityViews = result.data
     let arr: any = []
     result.data.forEach((item: any) => {
       if (item.identity_text == this.identity_text) {
-
         arr.push({ view_id: item.view_id })
         //  console.log(this.nowIndetityViews)
       }
@@ -108,7 +111,6 @@ class User {
     console.log("aaaaaaaaaaaa", result)
     return result;
   }
-
 }
 
 export default User;
