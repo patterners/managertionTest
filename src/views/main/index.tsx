@@ -13,33 +13,33 @@ import RouterView from '@/router/RouterView';
 @observer
 class LoginPage extends React.Component {
 
-    constructor(props: any) {
-        super(props);
-        const { getQuestion } = props.question;
-        getQuestion();
-    }
+  constructor(props: any) {
+    super(props);
+    const { getQuestion } = props.question;
+    getQuestion();
+  }
 
-    state = {
-        current: '',
-    };
+  state = {
+    current: '',
+  };
 
-    render() {
-        return (
-            <Layout className="mainHomePage">
-                <Header />
-                <Layout className="homePageBody">
-                    <MenuAntd />
-                    <Layout className="contentView">
-                        <RouterView routes={this.props['routes']} />
-                    </Layout>
-                </Layout>
-            </Layout>
-        )
-    }
-    componentDidMount() {
-        // console.log(this.props, 'this.props')
+  render() {
+    return (
+      <Layout className="mainHomePage">
+        <Header />
+        <Layout className="homePageBody">
+          <MenuAntd />
+          <Layout className="contentView">
+            {this.props.children}
+          </Layout>
+        </Layout>
+      </Layout>
+    )
+  }
+  componentDidMount() {
+    // console.log(this.props, 'this.props')
 
-    }
+  }
 
 }
 

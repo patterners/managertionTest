@@ -1,101 +1,178 @@
+import * as React from 'react'
 // 一级路由
-import Login from '@/views/login';
-import Main from '@/views/main';
-// 二级路由
+const Login = React.lazy(() => import('@/views/login'));
+const Main = React.lazy(() => import('@/views/main'));
+
 // 试题管理
-import Question from '@/views/main/quertion/checkQuestion'
-import AddQuestion from '@/views/main/quertion/addQuestion'
-import ClassifyQuestion from '@/views/main/quertion/classifyQuestion'
-import ChangeQuestion from '@/views/main/quertion/changeQuestion'
+const Question = React.lazy(() => import('@/views/main/quertion'));
+const ViewQuestion = React.lazy(() => import('@/views/main/quertion/checkQuestion'));
+const AddQuestion = React.lazy(() => import('@/views/main/quertion/addQuestion'));
+const ClassifyQuestion = React.lazy(() => import('@/views/main/quertion/classifyQuestion'));
+const ChangeQuestion = React.lazy(() => import('@/views/main/quertion/changeQuestion'));
+
 // 试题详情页 
-import QuestionDetail from '@/views/main/quertion/testItemDetails'
+const QuestionDetail = React.lazy(() => import('@/views/main/quertion/testItemDetails'));
 
 //用户管理
-import AddUser from '@/views/main/userpage/adduser'
-import UserShow from '@/views/main/userpage/usershow'
+const User = React.lazy(() => import('@/views/main/userpage'));
+const AddUser = React.lazy(() => import('@/views/main/userpage/adduser'));
+const UserShow = React.lazy(() => import('@/views/main/userpage/usershow'));
+
 //考试管理
-import AddTest from "@/views/main/testpage/addTestPage/addtest"
-import TestList from "@/views/main/testpage/testList"
-import CreateTestPage from '@/views/main/testpage/createTextPape'
+const Test = React.lazy(() => import("@/views/main/testpage"));
+const AddTest = React.lazy(() => import("@/views/main/testpage/addTestPage/addtest"));
+const TestList = React.lazy(() => import("@/views/main/testpage/testList"));
+const CreateTestPage = React.lazy(() => import('@/views/main/testpage/createTextPape'));
 
 //班级管理
-import StudentAdministration from "@/views/main/Administration/StudentAdministration"
-import ClassAdministration from "@/views/main/Administration/classAdministration"
-import Classroom from "@/views/main/Administration/Classroom"
+const Class = React.lazy(() => import('@/views/main/Administration'));
+const StudentAdministration = React.lazy(() => import('@/views/main/Administration/StudentAdministration'));
+const ClassAdministration = React.lazy(() => import('@/views/main/Administration/classAdministration'));
+const Classroom = React.lazy(() => import('@/views/main/Administration/Classroom'));
+
 //阅卷管理
-import Pending from "@/views/main/Marking/Pending"
+const Pijuan = React.lazy(() => import("@/views/main/Marking"));
+const Pending = React.lazy(() => import('@/views/main/Marking/Pending'));
+
 //批卷详情
-import Detailpijuan from "@/views/main/testpage/detailPijuan/detailPijuan"
+const Detailpijuan = React.lazy(() => import("@/views/main/testpage/detailPijuan/detailPijuan"));
+
 
 export default {
   routes: [{
     path: '/main',
     component: Main,
     children: [
+      // 试题管理
       {
-        path: '/main/checkQuestion',
-        component: Question
+        title: "menu.question",
+        path: '/main/question',
+        component: Question,
+        children: [
+          {
+            title: "menu.question.viewQuestion",
+            path: '/main/question/checkQuestion',
+            component: ViewQuestion
+          },
+          {
+            path: '/main/question/detail',
+            component: QuestionDetail
+          },
+          {
+            path: '/main/question/addQuestion',
+            title: "menu.question.addQuestion",
+            component: AddQuestion
+          }, {
+            title: "menu.question.typeQuestion",
+            path: '/main/question/classifyQuestion',
+            component: ClassifyQuestion
+          },
+          {
+            path: '/main/question/changeQuestion',
+            component: ChangeQuestion
+          },
+        ]
       },
+      // 用户管理
       {
-        path: '/main/question/detail',
-        component: QuestionDetail
+        title: "menu.user",
+        path: '/main/user',
+        component: User,
+        children: [
+          {
+            title: "menu.user.addUser",
+            path: '/main/user/adduser',
+            component: AddUser
+          },
+          {
+            title: "menu.user.showUser",
+            path: '/main/user/usershow',
+            component: UserShow
+          },
+        ]
       },
+      // 考试管理
       {
-        path: '/main/addQuestion',
-        component: AddQuestion
-      }, {
-        path: '/main/classifyQuestion',
-        component: ClassifyQuestion
+        "title": "menu.exam",
+        path: '/main/test',
+        component: Test,
+        children: [
+          {
+            "title": "menu.exam.addExam",
+            path: '/main/test/addtest',
+            component: AddTest
+          },
+          {
+            path: '/main/test/detailpijuan',
+            component: Detailpijuan
+          },
+          {
+            path: '/main/test/createTestPage',
+            component: CreateTestPage
+          },
+          {
+            "title": "menu.exam.examList",
+            path: '/main/test/testList',
+            component: TestList
+          },
+        ]
       },
 
-      {
-        path: '/main/changeQuestion',
-        component: ChangeQuestion
-      },
 
+      // 班级管理
       {
-        path: '/main/adduser',
-        component: AddUser
+        title: "menu.class",
+        path: '/main/Class',
+        component: Class,
+        children: [
+          {
+            title: "menu.class.grade",
+            path: '/main/Class/ClassAdministration',
+            component: ClassAdministration
+          },
+          {
+            title: "menu.class.room",
+            path: '/main/Class/Classroom',
+            component: Classroom
+          },
+          {
+            title: "menu.class.student",
+            path: '/main/Class/StudentAdministration',
+            component: StudentAdministration
+          },
+        ]
       },
+      // 阅卷
       {
-        path: '/main/usershow',
-        component: UserShow
-      },
-      {
-        path: '/main/addtest',
-        component: AddTest
-      },
-      {
-        path: '/main/StudentAdministration',
-        component: StudentAdministration
-      },
-      {
-        path: '/main/ClassAdministration',
-        component: ClassAdministration
-      },
-      {
-        path: '/main/Classroom',
-        component: Classroom
-      },
-      {
-        path: '/main/testList',
-        component: TestList
-      }, {
+        title: "menu.marking",
         path: '/main/pending',
-        component: Pending
-
+        component: Pijuan,
+        children: [
+          {
+            title: "menu.marking.wait",
+            path: '/main/pending/pending',
+            component: Pending,
+          }
+        ]
       },
-      {
-        path: '/main/detailpijuan',
-        component: Detailpijuan
-      },
-      {
-        path: '/main/createTestPage',
-        component: CreateTestPage
-      }
     ]
   }, {
     path: '/login',
     component: Login
-  }]
+  },
+    //   {
+    //   path: "/403",
+    //   component: () => <div>403 < /div>
+    // }, {
+    //   path: "/404",
+    //   component: () => <div>404 < /div>
+    //   },
+    //   {
+    //   from: "/",
+    //   to: "/login"
+    // }, {
+    //   from: "*",
+    //   to: "/404"
+    // }
+  ]
 }

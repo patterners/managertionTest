@@ -1,112 +1,53 @@
 import * as React from 'react';
-import { Menu, Icon, Switch, Layout } from 'antd';
+import { Menu, Icon, Layout } from 'antd';
+import { NavLink } from 'react-router-dom';
+import router from '@/router/router';
+import { injectIntl } from 'react-intl';
+
+let routrArr: any = router.routes[0].children
+console.log(routrArr)
 const { SubMenu } = Menu;
 const { Sider } = Layout;
-import { Link } from 'react-router-dom'
 
-class MenuAntd extends React.Component {
-    render() {
-        return (
-            <Sider
-                style={{
-                    overflow: 'auto',
-                    height: '100vh',
-                    position: 'fixed',
-                    left: 0,
-                }}>
-                <Menu className="slideLeft"
-                    theme="dark"
-                    style={{ width: 256, height: 600 }}
-                    defaultOpenKeys={['sub1']}
-                    mode="inline">
-                    {/* 试题管理 */}
-                    <SubMenu
-                        key="sub1"
-                        title={
-                            <span>
-                                <Icon type="mail" />
-                                <span>试题管理</span>
-                            </span>
-                        }>
-                        <Menu.Item key="1">
-                            <Link to="/main/addQuestion">添加试题</Link>
-                        </Menu.Item>
-                        <Menu.Item key="2">
-                            <Link to="/main/classifyQuestion">试题分类</Link>
-                        </Menu.Item>
-                        <Menu.Item key="3">
-                            <Link to="/main/checkQuestion">查看试卷</Link>
-                        </Menu.Item>
-                    </SubMenu>
+class MenuAntd extends React.Component<any> {
+  render() {
+    let { formatMessage } = this.props.intl;
+    return (
+      <Sider
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}>
 
-                    {/* 用户管理 */}
-                    <SubMenu
-                        key="sub2"
-                        title={
-                            <span>
-                                <Icon type="appstore" />
-                                <span>用户管理</span>
-                            </span>
-                        }>
-                        <Menu.Item key="5">
-                            <Link to="/main/adduser">添加用户</Link>
-                        </Menu.Item>
-                        <Menu.Item key="6">
-                            <Link to="/main/usershow">用户展示</Link>
-                        </Menu.Item>
-                    </SubMenu>
+        <Menu className="slideLeft"
+          theme="dark"
+          style={{ width: 256, height: 600 }}
+          defaultOpenKeys={['sub1']}
+          mode="inline">
 
-                    {/* 考试管理 */}
-                    <SubMenu
-                        key="sub4"
-                        title={
-                            <span>
-                                <Icon type="setting" />
-                                <span>考试管理</span>
-                            </span>
-                        }>
-                        <Menu.Item key="9">
-                            <Link to="/main/addtest">添加考试</Link>
-                        </Menu.Item>
-                        <Menu.Item key="10">
-                            <Link to="/main/testList">  考试列表</Link>
-                        </Menu.Item>
-                    </SubMenu>
-                    {/* 班级管理 */}
-                    <SubMenu
-                        key="sub5"
-                        title={
-                            <span>
-                                <Icon type="setting" />
-                                <span>班级管理</span>
-                            </span>
-                        }>
-                        <Menu.Item key="9">
-                            <Link to="/main/classAdministration">班级管理</Link>
-                        </Menu.Item>
-                        <Menu.Item key="10">
-                            <Link to="/main/Classroom">教室管理</Link>
-                        </Menu.Item>
-                        <Menu.Item key="11">
-                            <Link to="/main/StudentAdministration">学生管理</Link>
-                        </Menu.Item>
-                    </SubMenu>
-                    {/* 阅卷管理 */}
-                    <SubMenu
-                        key="sub6"
-                        title={
-                            <span>
-                                <Icon type="setting" />
-                                <span>阅卷管理</span>
-                            </span>
-                        }>
-                        <Menu.Item key="12">
-                            <Link to="/main/pending">待批班级</Link>
-                        </Menu.Item>
-                    </SubMenu>
-                </Menu>
-            </Sider>
-        )
-    }
+          {
+            routrArr.map((item: any) => {
+              return <SubMenu
+                key={item.title}
+                title={
+                  <span>
+                    {/* <Icon type="mail" /> */}
+                    <span>{item.title ? formatMessage({ id: item.title }) : item.path}</span>
+                  </span>
+                }>
+                {item.children && item.children.map((sub: any) =>
+                  sub.title && <Menu.Item key={sub.title} >
+                    <NavLink to={sub.path}>{sub.title ? formatMessage({ id: sub.title }) : sub.path}</NavLink>
+                  </Menu.Item>
+                )}
+              </SubMenu>
+            })
+          }
+        </Menu>
+      </Sider>
+    )
+  }
 }
-export default MenuAntd
+export default injectIntl(MenuAntd)

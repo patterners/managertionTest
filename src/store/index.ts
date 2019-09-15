@@ -6,18 +6,25 @@ import Addquestion from './modules/addQuestion'
 import ChangeQuestion from './modules/changeQuestion'
 import TestPage from './modules/testPage'
 import Test from './modules/text'
+import Global from './modules/global'
+
+
 // 实例化模块
 const user = new User();
 const question = new Question();
 const addQuestion = new Addquestion()
 const changeQuestion = new ChangeQuestion()
 const testPage = new TestPage()
-const text = new Test
+const text = new Test()
+const global = new Global()
+
+
 export default {
   user,
   question,
   addQuestion,
   changeQuestion,
   testPage,
-  text
+  text,
+  global
 }
