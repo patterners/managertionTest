@@ -49,8 +49,3 @@ export let getTestPageDetail = (id: string) => {
 export let deleteTestPage = (id: string) => {
   return request.delete(`/exam/exam/${id}`)
 }
-
-
-
-
-

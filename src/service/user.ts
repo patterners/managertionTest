@@ -44,3 +44,8 @@ export let viewauthority = () => {
 export let apiauthority = () => {
     return request.get('/user/api_authority');
 }
+//批卷详情
+export let detailtest = (id:any) => {
+    console.log(id)
+    return request.get(`/exam/student?grade_id=${id}`);
+}

@@ -30,6 +30,15 @@
     height: 50px;
     color:#fff;
 }
+.main-list .trlist td{
+    background: #fff;
+    height: 50px;
+    line-height: 50px;
+}
+.main-list .color_blue{
+    color:blue;
+    font-weight: bold;
+}
 .main-list h3{
     padding: 20px;
     font-size: 30px;
