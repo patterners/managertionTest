@@ -1,8 +1,12 @@
-import * as React from "react";
 import "./addtest.css"
-import { Form, DatePicker, Button, Input, Select, InputNumber } from 'antd';
-import { WrappedFormUtils } from 'antd/lib/form/Form'
+// import moment from "moment"
+import * as React from "react";
 import { inject, observer } from 'mobx-react'
+import { WrappedFormUtils } from 'antd/lib/form/Form'
+import { Form, DatePicker, Button, Input, Select, InputNumber, message } from 'antd';
+
+const moment = require('moment')
+
 const { Option } = Select;
 
 interface Props {
@@ -30,10 +34,156 @@ class Addtest extends React.Component<any> {
     userInfo: null,
     exam_id: '',
     subject_id: '',
+    number: 4,
+    title: '',
     subjectType: [],
-    lessonType: []
-
+    lessonType: [],
   };
+
+  render() {
+    const { startValue, endValue, endOpen, title, userInfo, subjectType, lessonType, number } = this.state;
+    const formItemLayout = {
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
+    return (
+      <div>
+        <h2>添加考试</h2>
+        <div className="addtest">
+          <div className="form-box">
+            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+              <div className="time">
+                <h3><b>*</b>试卷名称</h3>
+                <Input value={title} onChange={e => this.hangdleChangeValue(e, 'title')} />
+              </div>
+              <div className="time">
+                <h3><b>*</b>选择考试类型</h3>
+                <Select onChange={e => this.hangdleChangeValue(e, 'exam_id')}>
+                  {
+                    subjectType.length && subjectType.map((item: any) =>
+                      <Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Option>)
+                  }
+                </Select>
+              </div>
+              <div className="time">
+                <h3><b>*</b>选择课程</h3>
+                <Select onChange={e => this.hangdleChangeValue(e, 'subject_id')}>
+                  {lessonType.length && lessonType.map((item: any) =>
+                    <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>)
+                  }
+                </Select>
+              </div>
+              <div className="time">
+                <h3><b>*</b>设置题量</h3>
+                <InputNumber onChange={e => this.hangdleChangeValue(e, 'number')}
+                  value={number} min={1} max={10} />
+              </div>
+              <div className="time">
+                <h3>考试时间</h3>
+                <DatePicker
+                  disabledDate={this.disabledStartDate}
+                  showTime
+                  format="YYYY-MM-DD HH:mm:ss"
+                  value={startValue}
+                  placeholder="Start Time"
+                  onChange={this.onStartChange}
+                  onOpenChange={this.handleStartOpenChange}
+                  onOk={this.handle_start_time}
+                />
+                <DatePicker
+                  disabledDate={this.disabledEndDate}
+                  showTime
+                  format="YYYY-MM-DD HH:mm:ss"
+                  value={endValue}
+                  placeholder="End Time"
+                  onChange={this.onEndChange}
+                  open={endOpen}
+                  onOpenChange={this.handleEndOpenChange}
+                  onOk={this.handle_end_time}
+                />
+              </div>
+              <Form.Item
+                wrapperCol={{
+                  xs: { span: 24, offset: 0 },
+                  sm: { span: 16, offset: 8 },
+                }}>
+                <Button className="button" type="primary"
+                  htmlType="submit" onClick={this.handleAddTest}
+                >
+                  创建试卷
+                </Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </div>
+      </div >
+    )
+  }
+
+
+  componentDidMount() {
+    this.getDefaultData()
+  }
+  //  清空数据  防止内存泄漏？
+  componentWillUnmount() {
+    this.state = null
+  }
+
+  // 初始化类型列表请求数据   用户的/+两个列表的
+  // 请求数据时应该设置报错机制 
+  async getDefaultData() {
+    const userInfo = (await this.props.addQuestion.getUsernfo()).data
+    const subjectType = (await this.props.addQuestion.getTestType()).data
+    const lessonType = (await this.props.addQuestion.getLessonType()).data
+    this.setState({
+      userInfo,
+      subjectType,
+      lessonType
+    })
+  }
+
+  async  handleAddTest() {
+    console.log(this.state)
+    const {
+      title,
+      number,
+      exam_id,
+      endValue,
+      subject_id,
+      startValue,
+    } = this.state
+
+    //将moment格式转为时间戳
+    const start_time = +moment(startValue).format('x')
+    const end_time = +moment(endValue).format('x')
+    let obj = {
+      subject_id, exam_id, title, number, start_time, end_time
+    }
+
+    const result = await this.props.testPage.addTestPage(obj)
+    console.log(result)
+    // 判断并且跳转页面到添加具体试题的页面
+
+    if (result.code === 1) {
+      message.success(result.msg)
+      // this.props.history.push('/main/createTestPage')
+      this.props.history.push('/main/testList')
+
+    }
+  }
+
+  // 合并方法  设置整体状态
+  hangdleChangeValue = (e: any, name: string) => {
+    if (e.target) {
+      this.setState({ [name]: e.target.value })
+    } else {
+      this.setState({ [name]: e })
+    }
+  }
+
+  // form表单的方法
   disabledStartDate = (startValue: any) => {
     const { endValue } = this.state;
     if (!startValue || !endValue) {
@@ -99,183 +249,10 @@ class Addtest extends React.Component<any> {
   };
 
   handle_start_time = (e: any) => {
-
     console.log(e)
   }
   handle_end_time = (e: any) => {
     console.log(e._d)
   }
-  render() {
-    const { startValue, endValue, endOpen, userInfo, subjectType, lessonType } = this.state;
-    console.log(subjectType, lessonType)
-    const { getFieldDecorator } = this.props.form;
-    const formItemLayout = {
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-    const rangeConfig = {
-      rules: [
-        {
-          type: 'array',
-          required: true,
-          message: 'Please select time!'
-        }
-      ],
-    };
-    return (
-      <div>
-        <h2>添加考试</h2>
-        <div className="addtest">
-          <div className="form-box">
-            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-              <div className="time">
-                <h3><b>*</b>试卷名称</h3>
-                <Form.Item>
-                  {getFieldDecorator('email', {
-                    rules: [
-                      {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!',
-                      },
-                      {
-                        required: true,
-                        message: 'Please input your E-mail!',
-                      },
-                    ],
-                  })(<Input />)}
-                </Form.Item>
-              </div>
-              <div className="time">
-                <h3><b>*</b>选择考试类型</h3>
-                {/* <Form.Item hasFeedback>
-                  {getFieldDecorator('select', {
-                    rules: [{
-                      required: true,
-                      message: 'Please select your country!'
-                    }],
-                  })( */}
-                    <Select onChange={e => this.hangdleChangeValue(e, 'exam_id')}
-                    >{
-                        subjectType.length && subjectType.map((item: any) =>
-                          <Option key={item.exam_id} value={item.exam_id}>{item.exam_name}</Option>)
-                      }</Select>
-                  {/* )}
-                </Form.Item> */}
-              </div>
-
-              <div className="time">
-                <h3><b>*</b>选择课程</h3>
-                {/* <Form.Item hasFeedback>
-                  {getFieldDecorator('select', {
-                    rules: [{
-                      required: true,
-                      message: 'Please select your country!'
-                    }],
-                  })( */}
-                    <Select onChange={e => this.hangdleChangeValue(e, 'subject_id')}
-                    >{
-                        lessonType.length && lessonType.map((item: any) =>
-                          <Option key={item.subject_id} value={item.subject_id}>{item.subject_text}</Option>)
-                      }</Select>
-                  {/* )}
-                </Form.Item> */}
-              </div>
-              <div className="time">
-                <h3><b>*</b>设置题量</h3>
-                <Form.Item>
-                  {getFieldDecorator('input-number')(<InputNumber min={1} max={10} />)}
-                </Form.Item>
-              </div>
-              <div className="time">
-                <h3>考试时间</h3>
-                {/* <Form.Item>
-                  {getFieldDecorator('range-picker', rangeConfig)(<RangePicker />)}
-                </Form.Item> */}
-                <DatePicker
-                  disabledDate={this.disabledStartDate}
-                  showTime
-                  format="YYYY-MM-DD HH:mm:ss"
-                  value={startValue}
-                  placeholder="Start"
-                  onChange={this.onStartChange}
-                  onOpenChange={this.handleStartOpenChange}
-                  onOk={this.handle_start_time}
-                />
-                <DatePicker
-                  disabledDate={this.disabledEndDate}
-                  showTime
-                  format="YYYY-MM-DD HH:mm:ss"
-                  value={endValue}
-                  placeholder="End"
-                  onChange={this.onEndChange}
-                  open={endOpen}
-                  onOpenChange={this.handleEndOpenChange}
-                  onOk={this.handle_end_time}
-                />
-              </div>
-              <Form.Item
-                wrapperCol={{
-                  xs: { span: 24, offset: 0 },
-                  sm: { span: 16, offset: 8 },
-                }}>
-                <Button className="button" type="primary"
-                  htmlType="submit" onClick={this.handleAddTest}
-                >
-                  创建试卷
-                </Button>
-              </Form.Item>
-            </Form>
-          </div>
-        </div>
-      </div >
-    )
-  }
-
-
-  componentDidMount() {
-    this.getDefaultData()
-  }
-
-  // 初始化类型列表请求数据   用户的/+两个列表的
-  // 请求数据时设置报错机制 
-  async getDefaultData() {
-    const userInfo = (await this.props.addQuestion.getUsernfo()).data
-    const subjectType = (await this.props.addQuestion.getTestType()).data
-    const lessonType = (await this.props.addQuestion.getLessonType()).data
-    console.log(userInfo, subjectType, lessonType)
-    this.setState({
-      userInfo,
-      subjectType,
-      lessonType
-    })
-  }
-
-  handleAddTest() {
-    let obj = {}
-
-    // subject_id	    是	string	学科id
-    // exam_id	      是	string	试卷类型id
-    // title	        是	string	试卷标题
-    // number	        否	number	试卷题量， 默认4
-    // start_time	    是	number	开始时间
-    // end_time	      是	number	结束时间 设置传参
-    const result = this.props.testPage.addTestPage(obj)
-    console.log(result)
-    // 判断并且跳转页面到添加具体试题的页面
-  }
-
-  // 合并方法  设置整体状态
-  hangdleChangeValue = (e: any, name: string) => {
-    if (e.target) {
-      this.setState({ [name]: e.target.value })
-    } else {
-      this.setState({ [name]: e })
-    }
-  }
-
 }
 export default Form.create()(Addtest)
-
-
