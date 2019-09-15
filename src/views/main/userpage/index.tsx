@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-export class mark extends React.Component {
-
+export class userName extends React.Component {
   public render() {
     return (
       <div>
@@ -11,4 +10,4 @@ export class mark extends React.Component {
   }
 }
 
-export default mark
+export default userName

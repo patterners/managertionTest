@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export class mark extends React.Component {
+export class testPage extends React.Component {
 
   public render() {
     return (
@@ -11,4 +11,4 @@ export class mark extends React.Component {
   }
 }
 
-export default mark
+export default testPage
