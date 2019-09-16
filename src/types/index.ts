@@ -1,15 +1,16 @@
-export interface LoginForm{
-    user_name: string,
-    user_pwd: string
-}
+// const cont = require['context']('./model', false, /\.ts$/);
 
-export enum HttpType{
-    object,
-    Array
-}
+// let arr: any = cont.keys().map((key: any) =>
+//   Object.entries(cont(key)))
 
-export interface HttpInfo{
-    code: number,
-    messgae: string,
-    data?: HttpType
-}
+// let brr: any = []
+// arr.forEach((item: any) => {
+//   brr = brr.concat(item)
+// })
+
+// const obj = Object['fromEntries'](brr)
+// export default obj
+
+/// <reference path="./model/userLogin.ts"/>
+// import * as URL from "url";
+// let myUrl = URL.parse("http://www.typescriptlang.org");
