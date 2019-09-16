@@ -38,5 +38,6 @@
     "sass-loader": "^8.0.0",
     "typescript": "^3.6.2",
     "webpack-bundle-analyzer": "^3.5.0"
-  }
+  },
+  "homepage": "./"
 }
