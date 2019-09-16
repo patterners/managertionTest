@@ -49,3 +49,18 @@ export let apiauthority = () => {
 export let getIdentityView = () => {
   return request.get("/user/identity_view_authority_relation")
 }
+
+
+
+
+
+
+// 获取用户信息
+export let getUserInfo = () => {
+  return request.get('/user/userInfo');
+}
+
+// 获取用户权限
+export let getViewAuthority = () => {
+  return request.get('/user/view_authority');
+}

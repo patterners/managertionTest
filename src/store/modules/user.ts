@@ -1,8 +1,10 @@
-// import { Url, } from './../../types/model/userLogin';
 /// <reference path="../../types/model/userLogin.ts"/>
 import * as Url from 'url'
 import { observable, action } from 'mobx'
-import { login, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata, getIdentityView } from '@/service/index'
+import {
+  login, uid, apiauthority, viewauthority, hasview, relationship, viewdata, InterfaceJurisdiction, userdata, apiinterface, identitydata, getIdentityView,
+  getUserInfo, getViewAuthority
+} from '@/service/index'
 import { setToken, removeToken } from '@/utils/index'
 
 
@@ -19,11 +21,14 @@ if (window.localStorage.getItem('account')) {
 //   user_name: string,
 //   user_pwd: string
 // }
-class User<Url,LoginForm> {
+class User {
   @observable isLogin: boolean = false;
   @observable account: any = account;
   @observable identity_text: string = ""
   @observable nowIndetityViews: object[] = []
+  @observable userInfo: any = {};
+  @observable viewAuthority: object[] = [];
+  @observable avatar: string = '';
   //请选择已有api权限
   @action async apiauthority(): Promise<any> {
     let result: any = await apiauthority();
@@ -110,6 +115,22 @@ class User<Url,LoginForm> {
     this.nowIndetityViews = arr
     console.log("aaaaaaaaaaaa", result)
     return result;
+  }
+
+  // 获取用户信息
+  @action async getUserInfo(): Promise<any> {
+    let userInfo: any = await getUserInfo();
+    console.log('userInfo...', userInfo);
+    this.userInfo = userInfo.data;
+    // this.avatar = userInfo.data.avatar;
+    this.getViewAuthority();
+  }
+
+  // 获取用户权限
+  @action async getViewAuthority(): Promise<any> {
+    let viewAuthority: any = await getViewAuthority();
+    console.log('viewAuthority...', viewAuthority);
+    this.viewAuthority = viewAuthority.data;
   }
 }
 

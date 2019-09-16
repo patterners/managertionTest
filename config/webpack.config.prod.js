@@ -1,5 +1,5 @@
 'use strict';
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -14,10 +14,10 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-const publicPath = paths.servedPath;
+const publicPath = './';
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -58,7 +58,13 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+
+
+  // entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+    bundle: path.join(__dirname, '../src/index'),
+    vendor: ['react', 'react-dom', 'jquery', 'react-router']
+  },
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -116,6 +122,7 @@ module.exports = {
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       new TsconfigPathsPlugin({ configFile: paths.appTsProdConfig }),
+
     ],
   },
   module: {
@@ -369,6 +376,36 @@ module.exports = {
       tsconfig: paths.appTsProdConfig,
       tslint: paths.appTsLint,
     }),
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('./dist/vendors-manifest.json')
+    }),
+    //业务代码与node_modules分离
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => (
+        resource &&
+        resource.indexOf('node_modules') >= 0 &&
+        resource.match(/\.js$/)
+      ),
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      // 把引入的React切换到产品版本
+      'process.env.NODE_ENV': '"production"'
+    }),
+    new CompressionWebpackPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: new RegExp('\\.(js|css)$'),
+      threshold: 10240,
+      minRatio: 0.8
+    }),
+    new BundleAnalyzerPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

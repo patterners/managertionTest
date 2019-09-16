@@ -38,6 +38,10 @@ const Pending = React.lazy(() => import('@/views/main/Marking/Pending'));
 const Detailpijuan = React.lazy(() => import("@/views/main/testpage/detailPijuan/detailPijuan"));
 
 
+// 403/404
+const Page_403 = React.lazy(() => import('@/views/safetyPage/403'))
+const Page_404 = React.lazy(() => import('@/views/safetyPage/404'))
+
 export default {
   routes: [{
     path: '/main',
@@ -52,23 +56,25 @@ export default {
           {
             title: "menu.question.viewQuestion",
             path: '/main/question/checkQuestion',
+            view_id: "main-watchQuestions",
             component: ViewQuestion
-          },
-          {
+          }, {
             path: '/main/question/detail',
+            view_id: "main-questionsDetail",
             component: QuestionDetail
-          },
-          {
+          }, {
             path: '/main/question/addQuestion',
             title: "menu.question.addQuestion",
+            view_id: "main-addQuestions",
             component: AddQuestion
           }, {
             title: "menu.question.typeQuestion",
+            view_id: "main-questionsType",
             path: '/main/question/classifyQuestion',
             component: ClassifyQuestion
-          },
-          {
+          }, {
             path: '/main/question/changeQuestion',
+            view_id: "main-editQuestions",
             component: ChangeQuestion
           },
         ]
@@ -82,11 +88,13 @@ export default {
           {
             title: "menu.user.addUser",
             path: '/main/user/adduser',
+            view_id: "main-addUser",
             component: AddUser
           },
           {
             title: "menu.user.showUser",
             path: '/main/user/usershow',
+            view_id: "main-showUser",
             component: UserShow
           },
         ]
@@ -98,9 +106,10 @@ export default {
         component: Test,
         children: [
           {
-            "title": "menu.exam.addExam",
+            title: "menu.exam.addExam",
             path: '/main/test/addtest',
-            component: AddTest
+            view_id: "main-addExam",
+            component: AddTest,
           },
           {
             path: '/main/test/detailpijuan',
@@ -108,10 +117,12 @@ export default {
           },
           {
             path: '/main/test/createTestPage',
+            view_id: "main-examEdit",
             component: CreateTestPage
           },
           {
-            "title": "menu.exam.examList",
+            title: "menu.exam.examList",
+            view_id: "main-examList",
             path: '/main/test/testList',
             component: TestList
           },
@@ -127,16 +138,19 @@ export default {
         children: [
           {
             title: "menu.class.grade",
+            view_id: "main-grade",
             path: '/main/Class/ClassAdministration',
             component: ClassAdministration
           },
           {
             title: "menu.class.room",
+            view_id: "main-room",
             path: '/main/Class/Classroom',
             component: Classroom
           },
           {
             title: "menu.class.student",
+            view_id: "main-student",
             path: '/main/Class/StudentAdministration',
             component: StudentAdministration
           },
@@ -150,6 +164,7 @@ export default {
         children: [
           {
             title: "menu.marking.wait",
+            view_id: "main-examPaperClassmate",
             path: '/main/pending/pending',
             component: Pending,
           }
@@ -160,19 +175,19 @@ export default {
     path: '/login',
     component: Login
   },
-    //   {
-    //   path: "/403",
-    //   component: () => <div>403 < /div>
-    // }, {
-    //   path: "/404",
-    //   component: () => <div>404 < /div>
-    //   },
-    //   {
-    //   from: "/",
-    //   to: "/login"
-    // }, {
-    //   from: "*",
-    //   to: "/404"
-    // }
+  {
+    path: "/403",
+    component: () => Page_403
+  }, {
+    path: "/404",
+    component: () => Page_404
+  },
+  {
+    from: "/",
+    to: "/login"
+  }, {
+    from: "*",
+    to: "/404"
+  }
   ]
 }
