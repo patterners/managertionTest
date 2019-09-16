@@ -15,6 +15,32 @@ const langList = [
     title: "英文"
   }
 ]
+const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+        个人中心
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
+        我的班级
+      </a>
+    </Menu.Item>
+    <span className="hr">-------------------</span>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        设置
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
+        退出登录
+      </a>
+    </Menu.Item>
+  </Menu>
+);
+
 @inject("global", 'user')
 @observer
 export class header extends React.Component<any> {
@@ -37,6 +63,13 @@ export class header extends React.Component<any> {
           <div className="log-right">
             <span></span>
             <p>chenmanjie</p>
+            <p>
+              <Dropdown overlay={menu}>
+                <a className="ant-dropdown-link" href="#">
+                  Chenmanjie
+                </a>
+              </Dropdown>
+            </p>
           </div>
         </div>
       </div>
@@ -45,3 +78,5 @@ export class header extends React.Component<any> {
 }
 
 export default header;
+
+
