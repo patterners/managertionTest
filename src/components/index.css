@@ -21,6 +21,11 @@ body,
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+.hr{
+  font-size: 20px;
+  color:#ccc;
+  overflow: hidden;
+}
 .content {
   background: #fff;
   padding: 24px;
