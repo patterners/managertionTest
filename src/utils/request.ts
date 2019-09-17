@@ -3,12 +3,26 @@ import { AxiosResponse } from 'axios/index';
 import { message } from 'antd';
 import { getToken } from './index';
 
+const Url = {
+  '123.206.55.50': "//exam.jasonandjay.com",
+  "jasonandjay.com": '//exam.jasonandjay.com',
+  '127.0.0.1:5500': '//169.254.32.24:7001',
+  'localhost:3001': '//169.254.32.24:7001',
+}
 
 const instance = axios.create({
-  baseURL: 'http://localhost:7001',
+  baseURL: Url[window.location.host],
   timeout: 1000,
   headers: { 'authorization': getToken() }
 });
+
+
+// const instance = axios.create({
+//   baseURL: 'http://localhost:7001',
+//   timeout: 1000,
+//   headers: { 'authorization': getToken() }
+// });
+
 
 // 请求拦截器
 instance.interceptors.request.use((config) => {
@@ -23,13 +37,11 @@ instance.interceptors.request.use((config) => {
 // 响应拦截器
 instance.interceptors.response.use((response: AxiosResponse<any>) => {
   // Do something with response data
-  console.log('response...', response);
   if (response.status !== 200) {
     message.error(response.statusText);
   }
   return response.data;
 }, (error) => {
-  console.log('error...', error.response);
   if (error.response.status && error.response.status !== 200) {
     message.error(error.response.statusText);
   } else {

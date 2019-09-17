@@ -4,18 +4,6 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@router/*": [
-        "./src/router/*"
-      ],
-      "@service/*": [
-        "./src/service/*"
-      ],
-      "@utils/*": [
-        "./src/utils"
-      ],
-      "@store/*": [
-        "./src/store"
       ]
     },
     "outDir": "build/dist",

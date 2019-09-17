@@ -5,6 +5,14 @@
 .questionTitle {
   font-size: 18px;
 }
+/* 选中时的样式 */
+.activeType {
+  background: blue;
+
+  /* padding-left: 15px;
+  padding-right: 15px; */
+  color: #fff;
+}
 
 .classType {
   background: #fff;

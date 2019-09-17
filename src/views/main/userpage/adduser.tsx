@@ -1,10 +1,32 @@
 import * as React from "react";
 import "../userpage/user.css"
+import { inject, observer } from "mobx-react"
 //下拉菜单组件
 import Selectmodule from '../../../components/select'
-//
-import Buttonmodule from '../../../components/question/button'
-class AddUser extends React.Component {
+@inject("user")
+@observer
+class AddUser extends React.Component<any> {
+    state = {
+        uid: [],
+        hasview: [],
+        viewauthority: [],
+        apiauthority:[]
+    }
+    async componentDidMount() {
+        const uid = await this.props.user.uid()
+        const hasview = await this.props.user.hasview()
+        const viewauthority = await this.props.user.viewauthority()
+        const apiauthority = await this.props.user.apiauthority()
+        this.setState({
+            uid: uid.data,
+            hasview: hasview.data,
+            viewauthority: viewauthority.data,
+            apiauthority:apiauthority.data
+        })
+    }
+    userConfirm() {
+
+    }
     render() {
         return (
             <div>
@@ -22,11 +44,12 @@ class AddUser extends React.Component {
                             <input type="text" placeholder=" 请输入密码" />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
 
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" onClick={this.userConfirm.bind(this)} />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
 
                     </div>
@@ -39,7 +62,8 @@ class AddUser extends React.Component {
                         </div>
 
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -56,7 +80,8 @@ class AddUser extends React.Component {
                             <input type="text" placeholder=" 请输入api接口权限方法" />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -64,10 +89,11 @@ class AddUser extends React.Component {
                             <span className="active">添加视图接口权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule viewauthority={this.state.viewauthority} />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
@@ -75,27 +101,29 @@ class AddUser extends React.Component {
                             <span className="active">给身份设置api接口权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule apiauthority={this.state.apiauthority} />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                     <div className="add-list">
-                    <div className="tab">
+                        <div className="tab">
                             <span className="active">给身份设置视图权限</span>
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule uid={this.state.uid} />
                         </div>
                         <div className="userinp">
-                            <Selectmodule />
+                            <Selectmodule hasview={this.state.hasview} />
                         </div>
                         <div className="buts">
-                            <Buttonmodule />
+                            <input type="button" value="确定" className="confirm" />
+                            <input type="reset" value="重置" className="reset" />
                         </div>
                     </div>
                 </div>

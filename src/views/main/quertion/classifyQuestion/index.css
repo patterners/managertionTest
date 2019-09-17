@@ -11,7 +11,7 @@ h2{
 }
 li span{
     margin-left: 10px;
-    margin-right: 360px;
+    /* margin-right: 360px; */
 }
 .li{
     list-style: none;
@@ -41,11 +41,7 @@ li span{
     border-radius: 10px;
     background:#fff;
 }
-Button{
-    height: 50px;
-    width: 150px;
-    margin-right: 70%;
-}
+
 .and-but{
     float: left;
     margin: 20px 0;

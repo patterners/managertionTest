@@ -18,6 +18,7 @@ function ensureSlash(path, needsSlash) {
   } else if (!hasSlash && needsSlash) {
     return `${path}/`;
   } else {
+    // return `.${path}`;
     return path;
   }
 }
